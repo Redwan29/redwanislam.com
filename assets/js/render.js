@@ -27,7 +27,7 @@ function renderNav(activePage) {
   const drawerCv= DATA.cv_file ? `<a href="${DATA.cv_file}" download class="drawer-cv">⬇ Download CV</a>` : '';
 
   document.getElementById('nav').innerHTML = `
-    <div class="nav-logo" style="font-size:1.35rem;font-weight:700;letter-spacing:.08em;">RI</div>
+    <div class="nav-logo" style="font-size:1.35rem;font-weight:700;letter-spacing:.08em;">Portfolio</div>
     <ul class="nav-links">${desktopLinks}</ul>
     ${cvBtn}
     <button class="nav-hamburger" id="hamburger" onclick="toggleDrawer()" aria-label="Menu">
