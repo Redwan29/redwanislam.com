@@ -15,7 +15,7 @@ function renderNav(active){
   const cv=DATA.cv_file?`<a href="${DATA.cv_file}" download class="btn nav-cta">⬇ CV</a>`:'';
   const dcv=DATA.cv_file?`<a href="${DATA.cv_file}" download class="dcv">⬇ Download CV</a>`:'';
   document.getElementById('nav').innerHTML=`
-    <div class="nav-logo">RI</div>
+    <div class="nav-logo">Portfolio</div>
     <ul class="nav-links">${dlinks}</ul>
     ${cv}
     <button class="nav-hb" id="hb" onclick="toggleNav()" aria-label="Menu">
