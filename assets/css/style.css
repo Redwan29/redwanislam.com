@@ -367,7 +367,16 @@ body::after{
   .nav-hb{display:flex;}
   .g2,.g3{grid-template-columns:1fr;}
   .ga{grid-template-columns:1fr;}
-  .hero-svg-wrap{display:none;}
+  .hero-svg-wrap{
+    position:absolute!important;
+    right:50%!important;
+    top:50%!important;
+    transform:translate(50%,-50%)!important;
+    opacity:.07!important;
+    width:340px!important;
+    height:340px!important;
+    pointer-events:none;
+  }
   .stats-col{flex-direction:row!important;flex-wrap:wrap;gap:1.25rem!important;padding-left:0!important;justify-content:flex-start;margin-top:1.5rem;}
 }
 @media(max-width:600px){
