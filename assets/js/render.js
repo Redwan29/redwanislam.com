@@ -1,8 +1,9 @@
 // ============================================================
-// RENDER HELPERS — shared across all pages
+// RENDER HELPERS
+// DATA is set by data.js (localStorage first, then DEFAULT_DATA)
 // ============================================================
 
-// NAV
+// ── NAV ──────────────────────────────────────────────────────
 function renderNav(activePage) {
   const pages = [
     { id:"index",        label:"About",        href:"index.html" },
@@ -22,16 +23,11 @@ function renderNav(activePage) {
     `<li><a href="${p.href}" class="${p.id===activePage?'active':''}">${p.label}</a></li>`
   ).join('');
 
-  const cvBtn = DATA.cv_file
-    ? `<a href="${DATA.cv_file}" download class="btn nav-cta">⬇ Download CV</a>`
-    : '';
-
-  const drawerCv = DATA.cv_file
-    ? `<a href="${DATA.cv_file}" download class="drawer-cv">⬇ Download CV</a>`
-    : '';
+  const cvBtn   = DATA.cv_file ? `<a href="${DATA.cv_file}" download class="btn nav-cta">⬇ Download CV</a>` : '';
+  const drawerCv= DATA.cv_file ? `<a href="${DATA.cv_file}" download class="drawer-cv">⬇ Download CV</a>` : '';
 
   document.getElementById('nav').innerHTML = `
-    <div class="nav-logo">// ${(DATA.website||'redwanislam.com').replace('https://','')}</div>
+    <div class="nav-logo" style="font-size:1.35rem;font-weight:700;letter-spacing:.08em;">RI</div>
     <ul class="nav-links">${desktopLinks}</ul>
     ${cvBtn}
     <button class="nav-hamburger" id="hamburger" onclick="toggleDrawer()" aria-label="Menu">
@@ -39,7 +35,6 @@ function renderNav(activePage) {
     </button>
   `;
 
-  // Insert drawer after nav
   const drawer = document.createElement('div');
   drawer.className = 'nav-drawer';
   drawer.id = 'nav-drawer';
@@ -52,22 +47,20 @@ function toggleDrawer() {
   const drawer = document.getElementById('nav-drawer');
   btn.classList.toggle('open');
   drawer.classList.toggle('open');
-  // prevent body scroll when drawer open
   document.body.style.overflow = drawer.classList.contains('open') ? 'hidden' : '';
 }
 
-// Close drawer on link click
 document.addEventListener('click', function(e) {
-  if(e.target.closest('#nav-drawer a')) {
+  if (e.target.closest('#nav-drawer a')) {
     const btn    = document.getElementById('hamburger');
     const drawer = document.getElementById('nav-drawer');
-    if(btn) btn.classList.remove('open');
-    if(drawer) drawer.classList.remove('open');
+    if (btn)    btn.classList.remove('open');
+    if (drawer) drawer.classList.remove('open');
     document.body.style.overflow = '';
   }
 });
 
-// FOOTER
+// ── FOOTER ───────────────────────────────────────────────────
 function renderFooter() {
   document.getElementById('footer').innerHTML = `
     <div style="border-top:1px solid var(--border);padding:2rem;text-align:center;position:relative;z-index:1;">
@@ -80,48 +73,47 @@ function renderFooter() {
   `;
 }
 
-// TAGS
+// ── TAGS ─────────────────────────────────────────────────────
 function renderTags(tags) {
-  if(!tags) return '';
+  if (!tags || !tags.length) return '';
   return `<div style="display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.75rem;">
-    ${tags.map(t=>`<span class="tag tag-accent">${t}</span>`).join('')}
+    ${tags.map(t => `<span class="tag tag-accent">${t}</span>`).join('')}
   </div>`;
 }
 
-// EXPERIENCE ITEMS
+// ── EXPERIENCE ───────────────────────────────────────────────
 function renderExperience() {
-  return DATA.experience.map(e => {
-    const projects = e.projects
+  return (DATA.experience || []).map(e => {
+    const projs = e.projects
       ? `<ul style="color:var(--text-muted);font-size:.84rem;margin:.5rem 0 .75rem 1.1rem;line-height:1.85;">
-          ${e.projects.map(p=>`<li>${p}</li>`).join('')}
-         </ul>`
-      : '';
+          ${e.projects.map(p => `<li>${p}</li>`).join('')}
+         </ul>` : '';
     return `
       <div class="timeline-item">
         <div class="timeline-meta">${e.period}</div>
         <div class="timeline-role">${e.role}</div>
         <div class="timeline-company">${e.company}</div>
         <div class="timeline-desc">${e.desc}</div>
-        ${projects}
+        ${projs}
         ${renderTags(e.tags)}
       </div>`;
   }).join('');
 }
 
-// EDUCATION
+// ── EDUCATION ────────────────────────────────────────────────
 function renderEducation() {
-  return DATA.education.map(e => `
+  return (DATA.education || []).map(e => `
     <div class="edu-card">
       <div class="edu-period">${e.period}</div>
       <div class="edu-degree">${e.degree}</div>
       <div class="edu-institution">${e.institution}</div>
-      <div class="edu-detail">${e.detail.replace(/\n/g,'<br>')}</div>
+      <div class="edu-detail">${(e.detail||'').replace(/\n/g,'<br>')}</div>
     </div>`).join('');
 }
 
-// PROJECTS
+// ── PROJECTS ─────────────────────────────────────────────────
 function renderProjects() {
-  return DATA.projects.map(p => `
+  return (DATA.projects || []).map(p => `
     <div class="project-card">
       <div class="project-type">${p.type}</div>
       <div class="project-title">${p.title}</div>
@@ -131,9 +123,9 @@ function renderProjects() {
     </div>`).join('');
 }
 
-// PUBLICATIONS
+// ── PUBLICATIONS ─────────────────────────────────────────────
 function renderPublications() {
-  return DATA.publications.map((p,i) => `
+  return (DATA.publications || []).map((p, i) => `
     <div class="pub-item">
       <div class="pub-index">0${i+1}</div>
       <div>
@@ -141,20 +133,21 @@ function renderPublications() {
         <div class="pub-title">${p.title}</div>
         <div class="pub-venue">${p.venue}</div>
         <div class="pub-authors">${p.authors}</div>
+        ${p.doi ? `<div style="margin-top:.35rem;"><a href="${p.doi}" target="_blank" style="font-family:var(--mono);font-size:.65rem;color:var(--accent2);letter-spacing:.05em;">↗ VIEW PAPER</a></div>` : ''}
       </div>
     </div>`).join('');
 }
 
-// SKILLS
+// ── SKILLS ───────────────────────────────────────────────────
 function renderSkills() {
-  return DATA.skillGroups.map(g => `
+  return (DATA.skillGroups || []).map(g => `
     <div class="skill-group">
       <div class="skill-group-title">${g.title}</div>
       <ul class="skill-list">
-        ${g.skills.map(s => `
+        ${(g.skills || []).map(s => `
           <li>
             ${s.name}
-            ${s.pct!=null
+            ${s.pct != null
               ? `<span class="skill-bar-wrap"><div class="skill-bar" style="width:${s.pct}%"></div></span>`
               : ''}
           </li>`).join('')}
@@ -162,18 +155,18 @@ function renderSkills() {
     </div>`).join('');
 }
 
-// HONOURS
+// ── HONOURS ──────────────────────────────────────────────────
 function renderHonours() {
-  return DATA.honours.map(h => `
+  return (DATA.honours || []).map(h => `
     <div class="honour-item">
       <span class="honour-icon">${h.icon}</span>
       <div class="honour-text">${h.text}</div>
     </div>`).join('');
 }
 
-// ABOUT DETAILS
+// ── DETAILS ──────────────────────────────────────────────────
 function renderDetails() {
-  return DATA.details.map(d => `
+  return (DATA.details || []).map(d => `
     <div class="detail-row">
       <span class="detail-key">${d.key}</span>
       <span class="detail-val">${d.link
@@ -182,9 +175,9 @@ function renderDetails() {
     </div>`).join('');
 }
 
-// PHOTO
+// ── PHOTO ────────────────────────────────────────────────────
 function renderPhoto(size=200) {
-  if(DATA.photo) {
+  if (DATA.photo) {
     return `<div class="photo-frame" style="width:${size}px;height:${size}px;">
       <img src="${DATA.photo}" alt="${DATA.name}">
     </div>`;

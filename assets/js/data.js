@@ -1,7 +1,7 @@
 // ============================================================
-// PORTFOLIO DATA — Edit this file to update all pages
+// PORTFOLIO DATA — Edit this OR use cms.html to update
 // ============================================================
-const DATA = {
+const DEFAULT_DATA = {
   name: "Md Redwan Islam",
   title: "Mechanical Engineer & CFD Researcher",
   tagline: "MSc · University of Greenwich, UK",
@@ -9,8 +9,8 @@ const DATA = {
   linkedin: "https://linkedin.com/in/redwanislam98",
   website: "https://redwanislam.com",
   whatsapp: "+8801746332251",
-  cv_file: "assets/Redwan_Islam_CV.pdf",   // ← put your CV PDF here
-  photo: "",                                // ← e.g. "assets/img/photo.jpg"
+  cv_file: "assets/Redwan_Islam_CV.pdf",
+  photo: "",
 
   bio: [
     "Results-driven mechanical engineer with expertise spanning CFD simulation, HVAC system design, optical engineering R&D, and lean manufacturing. Passionate about applying advanced computational methods to solve complex fluid and thermal engineering problems.",
@@ -30,10 +30,10 @@ const DATA = {
   ],
 
   stats: [
-    { num: "5+",  label: "Years Experience" },
-    { num: "2",   label: "Publications" },
-    { num: "6+",  label: "Projects" },
-    { num: "3",   label: "Countries" }
+    { num: "5+", label: "Years Experience" },
+    { num: "2",  label: "Publications" },
+    { num: "6+", label: "Projects" },
+    { num: "3",  label: "Countries" }
   ],
 
   experience: [
@@ -100,7 +100,7 @@ const DATA = {
     {
       type: "MSc Dissertation · CFD Simulation",
       title: "Liquid Sloshing Control in Road Tanker Trucks",
-      desc: "CFD simulation of liquid sloshing in partially filled tanker trucks during emergency braking using ANSYS Fluent. Compared no-baffle, 3-baffle, and 5-baffle configurations using the VOF multiphase model and a User-Defined Function (UDF) for velocity input. Analysed pressure distribution, free surface motion, and wall force.",
+      desc: "CFD simulation of liquid sloshing in partially filled tanker trucks during emergency braking using ANSYS Fluent. Compared no-baffle, 3-baffle, and 5-baffle configurations using VOF multiphase model and UDF for velocity input. Analysed pressure distribution, free surface motion, and wall force.",
       outcome: "5-baffle config showed optimal sloshing suppression; baffles reduced peak dynamic wall pressure significantly",
       tags: ["ANSYS Fluent","VOF Model","UDF","Multiphase Flow","CFD"]
     },
@@ -114,28 +114,28 @@ const DATA = {
     {
       type: "MSc Coursework · Lean Manufacturing",
       title: "Business Case — H.E.L.L. TD Tube Machine",
-      desc: "Developed a comprehensive lean manufacturing business case for H.E.L.L.'s hydraulic tube production line. Included OEE analysis, VSM current/future state, Pareto and 5-Why root cause analysis, and 12-month phased implementation program with ROI financial model.",
+      desc: "Developed a comprehensive lean manufacturing business case for H.E.L.L.'s hydraulic tube production line. Included OEE analysis, VSM current/future state, Pareto and 5-Why root cause analysis, and 12-month phased implementation with ROI financial model.",
       outcome: "Identified 30%+ OEE improvement potential; full financial model with phased lean roadmap delivered",
       tags: ["Lean Manufacturing","VSM","OEE","5-Why","Pareto"]
     },
     {
       type: "MSc Coursework · Smart Manufacturing",
       title: "Telepresence Robot — Rapid Manufacturing & CAPP",
-      desc: "Rapid manufacturing case study for a telepresence robot component. Developed 3D CAD models and Computer-Aided Process Planning (CAPP) for both CNC machining and additive manufacturing routes, evaluating manufacturability, material selection, and production cost.",
+      desc: "Rapid manufacturing case study for a telepresence robot component. Developed 3D CAD models and Computer-Aided Process Planning for CNC machining and additive manufacturing routes, evaluating manufacturability, material selection, and production cost.",
       outcome: "Comparative CAPP process plans for CNC vs additive manufacturing routes delivered",
       tags: ["CAD/CAM","CAPP","Additive Manufacturing","CNC","Industry 4.0"]
     },
     {
       type: "Industrial · HVAC Engineering",
       title: "National Art Gallery HVAC & Fire Protection",
-      desc: "Led mechanical engineering design for an 850 RT Central Air Conditioning system, Fire Protection, and Clean Agent Fire Suppression system for Bangladesh National Art Gallery, Shilpakala Academy, Dhaka. Delivered full design drawings, BOQ, and cost estimates.",
+      desc: "Led mechanical engineering design for an 850 RT Central Air Conditioning system, Fire Protection, and Clean Agent Fire Suppression system for Bangladesh National Art Gallery, Shilpakala Academy, Dhaka.",
       outcome: "Full MEP design package for major national cultural landmark (850 RT capacity)",
       tags: ["HVAC","Fire Protection","AutoCAD","MEP Design"]
     },
     {
       type: "Industrial · Optical Engineering",
       title: "Lens Assembly Optimization — Young Optics Inc.",
-      desc: "Contributed to continuous improvement of automatic lens assembly processes in an industrial R&D environment. Used MTF testing data to identify optical performance gaps and developed engineering modifications to improve product quality and reduce assembly machine downtime.",
+      desc: "Contributed to continuous improvement of automatic lens assembly processes in an R&D environment. Used MTF testing data to identify optical performance gaps and developed engineering modifications to improve product quality.",
       outcome: "Improved lens MTF performance through data-driven design modifications in R&D cycle",
       tags: ["Optical Systems","MTF Testing","R&D","Quality Engineering"]
     }
@@ -146,13 +146,15 @@ const DATA = {
       type: "Conference Paper",
       title: "Presented at the International Conference on Mechanical Engineering and Renewable Energy (ICMERE) 2019",
       venue: "ICMERE 2019 · Chittagong, Bangladesh · Dec 10–12, 2019",
-      authors: "Md Redwan Islam et al."
+      authors: "Md Redwan Islam et al.",
+      doi: ""
     },
     {
       type: "Invited Guest Speaker",
       title: "Webinar on Electronics as the Enabling Technology for Building Smart City",
       venue: "World University of Bangladesh · Sep 30, 2021",
-      authors: "Invited as Special Guest Speaker"
+      authors: "Invited as Special Guest Speaker",
+      doi: ""
     }
   ],
 
@@ -184,8 +186,7 @@ const DATA = {
         { name:"Value Stream Mapping (VSM)", pct:null },
         { name:"OEE Analysis", pct:null },
         { name:"CAPP (CNC & AM)", pct:null },
-        { name:"Industry 4.0 / Smart Mfg", pct:null },
-        { name:"Digital Twins", pct:null }
+        { name:"Industry 4.0 / Smart Mfg", pct:null }
       ]
     },
     {
@@ -195,8 +196,7 @@ const DATA = {
         { name:"Thermodynamics", pct:null },
         { name:"HVAC & MEP Engineering", pct:null },
         { name:"Optical Engineering", pct:null },
-        { name:"Aerodynamics", pct:null },
-        { name:"Fire Protection Systems", pct:null }
+        { name:"Aerodynamics", pct:null }
       ]
     },
     {
@@ -215,7 +215,6 @@ const DATA = {
         { name:"Research & Data Analysis", pct:null },
         { name:"Project Management", pct:null },
         { name:"CAD Training & Teaching", pct:null },
-        { name:"Site Supervision", pct:null },
         { name:"BOQ & Cost Estimation", pct:null }
       ]
     }
@@ -229,3 +228,18 @@ const DATA = {
     { icon:"◆", text:"<strong>BAUST Mechatronics & Robotics Club</strong> — Former Executive Member" }
   ]
 };
+
+// ── LIVE DATA: use localStorage edits if they exist, else use defaults ──
+(function() {
+  try {
+    const saved = localStorage.getItem('cms_data');
+    if (saved) {
+      window.DATA = JSON.parse(saved);
+    } else {
+      window.DATA = JSON.parse(JSON.stringify(DEFAULT_DATA));
+      localStorage.setItem('cms_data', JSON.stringify(DEFAULT_DATA));
+    }
+  } catch(e) {
+    window.DATA = JSON.parse(JSON.stringify(DEFAULT_DATA));
+  }
+})();
