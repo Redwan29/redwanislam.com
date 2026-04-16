@@ -2,161 +2,211 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Md Redwan Islam | Portfolio</title>
+<title>Md Redwan Islam | Mechanical Engineer & CFD Researcher</title>
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 <nav class="nav" id="nav"></nav>
 <div class="page">
 
-  <!-- HERO -->
-  <div class="hero-wrap" style="min-height:100vh;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:6rem 1.5rem 4rem;overflow:hidden;">
+<!-- ══ HERO ══════════════════════════════════════════════════ -->
+<div class="hero-wrap" style="min-height:100vh;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:6rem 1.5rem 4rem;overflow:hidden;">
 
-    <!-- GEAR + STREAMLINE SVG BACKGROUND -->
-    <svg class="hero-svg" style="position:absolute;right:-60px;top:50%;transform:translateY(-50%);opacity:.13;pointer-events:none;width:520px;height:520px;" viewBox="0 0 520 520" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Large gear -->
-      <g class="gear-slow" style="transform-origin:200px 200px;">
-        <circle cx="200" cy="200" r="130" stroke="#00e5ff" stroke-width="1.5" fill="none"/>
-        <circle cx="200" cy="200" r="90"  stroke="#00e5ff" stroke-width="1" fill="none" opacity=".5"/>
-        <circle cx="200" cy="200" r="30"  stroke="#00e5ff" stroke-width="2" fill="none"/>
-        <!-- Gear teeth -->
-        <g stroke="#00e5ff" stroke-width="2" fill="none">
-          <rect x="189" y="62"  width="22" height="18" rx="2"/>
-          <rect x="189" y="320" width="22" height="18" rx="2"/>
-          <rect x="62"  y="189" width="18" height="22" rx="2"/>
-          <rect x="320" y="189" width="18" height="22" rx="2"/>
-          <rect x="110" y="97"  width="18" height="18" rx="2" transform="rotate(45 119 106)"/>
-          <rect x="268" y="97"  width="18" height="18" rx="2" transform="rotate(45 277 106)"/>
-          <rect x="110" y="281" width="18" height="18" rx="2" transform="rotate(45 119 290)"/>
-          <rect x="268" y="281" width="18" height="18" rx="2" transform="rotate(45 277 290)"/>
-        </g>
-        <!-- Spokes -->
-        <line x1="200" y1="110" x2="200" y2="170" stroke="#00e5ff" stroke-width="1" opacity=".6"/>
-        <line x1="200" y1="230" x2="200" y2="290" stroke="#00e5ff" stroke-width="1" opacity=".6"/>
-        <line x1="110" y1="200" x2="170" y2="200" stroke="#00e5ff" stroke-width="1" opacity=".6"/>
-        <line x1="230" y1="200" x2="290" y2="200" stroke="#00e5ff" stroke-width="1" opacity=".6"/>
-        <line x1="143" y1="143" x2="183" y2="183" stroke="#00e5ff" stroke-width="1" opacity=".6"/>
-        <line x1="217" y1="217" x2="257" y2="257" stroke="#00e5ff" stroke-width="1" opacity=".6"/>
-        <line x1="257" y1="143" x2="217" y2="183" stroke="#00e5ff" stroke-width="1" opacity=".6"/>
-        <line x1="183" y1="217" x2="143" y2="257" stroke="#00e5ff" stroke-width="1" opacity=".6"/>
+  <!-- MECHANICAL SVG BACKGROUND — gears + CFD streamlines -->
+  <div class="hero-svg-wrap" style="position:absolute;right:-40px;top:50%;transform:translateY(-50%);pointer-events:none;opacity:.16;width:500px;height:500px;">
+    <svg id="hero-svg" width="500" height="500" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+      <!-- LARGE GEAR (rotates CW via JS) -->
+      <g id="gear-big">
+        <!-- Outer rim -->
+        <circle cx="190" cy="200" r="120" stroke="#00e5ff" stroke-width="1.5" fill="none"/>
+        <!-- Inner rim -->
+        <circle cx="190" cy="200" r="85"  stroke="#00e5ff" stroke-width="1" fill="none" opacity=".5"/>
+        <!-- Hub -->
+        <circle cx="190" cy="200" r="28"  stroke="#00e5ff" stroke-width="2" fill="none"/>
+        <circle cx="190" cy="200" r="6"   fill="#00e5ff" opacity=".8"/>
+        <!-- Crosshair -->
+        <line x1="175" y1="200" x2="205" y2="200" stroke="#00e5ff" stroke-width=".8" opacity=".7"/>
+        <line x1="190" y1="185" x2="190" y2="215" stroke="#00e5ff" stroke-width=".8" opacity=".7"/>
+        <!-- 8 Spokes -->
+        <line x1="190" y1="104" x2="190" y2="172" stroke="#00e5ff" stroke-width="1.2" opacity=".6"/>
+        <line x1="190" y1="228" x2="190" y2="296" stroke="#00e5ff" stroke-width="1.2" opacity=".6"/>
+        <line x1="94"  y1="200" x2="162" y2="200" stroke="#00e5ff" stroke-width="1.2" opacity=".6"/>
+        <line x1="218" y1="200" x2="286" y2="200" stroke="#00e5ff" stroke-width="1.2" opacity=".6"/>
+        <line x1="122" y1="132" x2="169" y2="179" stroke="#00e5ff" stroke-width="1" opacity=".5"/>
+        <line x1="211" y1="221" x2="258" y2="268" stroke="#00e5ff" stroke-width="1" opacity=".5"/>
+        <line x1="258" y1="132" x2="211" y2="179" stroke="#00e5ff" stroke-width="1" opacity=".5"/>
+        <line x1="169" y1="221" x2="122" y2="268" stroke="#00e5ff" stroke-width="1" opacity=".5"/>
+        <!-- Gear teeth (12 teeth) -->
+        <rect x="180" y="72"  width="20" height="14" rx="2" stroke="#00e5ff" stroke-width="1.5" fill="none"/>
+        <rect x="180" y="314" width="20" height="14" rx="2" stroke="#00e5ff" stroke-width="1.5" fill="none"/>
+        <rect x="62"  y="192" width="14" height="20" rx="2" stroke="#00e5ff" stroke-width="1.5" fill="none"/>
+        <rect x="304" y="192" width="14" height="20" rx="2" stroke="#00e5ff" stroke-width="1.5" fill="none"/>
+        <rect x="106" y="100" width="16" height="14" rx="2" stroke="#00e5ff" stroke-width="1.5" fill="none" transform="rotate(-45 114 107)"/>
+        <rect x="250" y="270" width="16" height="14" rx="2" stroke="#00e5ff" stroke-width="1.5" fill="none" transform="rotate(-45 258 277)"/>
+        <rect x="256" y="100" width="16" height="14" rx="2" stroke="#00e5ff" stroke-width="1.5" fill="none" transform="rotate(45 264 107)"/>
+        <rect x="106" y="270" width="16" height="14" rx="2" stroke="#00e5ff" stroke-width="1.5" fill="none" transform="rotate(45 114 277)"/>
       </g>
-      <!-- Small gear interlocking -->
-      <g class="gear-ccw" style="transform-origin:352px 200px;">
-        <circle cx="352" cy="200" r="62"  stroke="#00b8cc" stroke-width="1.5" fill="none"/>
-        <circle cx="352" cy="200" r="42"  stroke="#00b8cc" stroke-width="1" fill="none" opacity=".5"/>
-        <circle cx="352" cy="200" r="16"  stroke="#00b8cc" stroke-width="2" fill="none"/>
-        <g stroke="#00b8cc" stroke-width="1.5" fill="none">
-          <rect x="343" y="132" width="18" height="12" rx="1"/>
-          <rect x="343" y="256" width="18" height="12" rx="1"/>
-          <rect x="284" y="193" width="12" height="18" rx="1"/>
-          <rect x="408" y="193" width="12" height="18" rx="1"/>
-        </g>
-        <line x1="352" y1="158" x2="352" y2="184" stroke="#00b8cc" stroke-width="1" opacity=".6"/>
-        <line x1="352" y1="216" x2="352" y2="242" stroke="#00b8cc" stroke-width="1" opacity=".6"/>
-        <line x1="310" y1="200" x2="336" y2="200" stroke="#00b8cc" stroke-width="1" opacity=".6"/>
-        <line x1="368" y1="200" x2="394" y2="200" stroke="#00b8cc" stroke-width="1" opacity=".6"/>
+
+      <!-- SMALL GEAR (rotates CCW, interlocks with large) -->
+      <g id="gear-small">
+        <circle cx="340" cy="200" r="58"  stroke="#00b8cc" stroke-width="1.5" fill="none"/>
+        <circle cx="340" cy="200" r="40"  stroke="#00b8cc" stroke-width="1"   fill="none" opacity=".5"/>
+        <circle cx="340" cy="200" r="15"  stroke="#00b8cc" stroke-width="1.5" fill="none"/>
+        <circle cx="340" cy="200" r="4"   fill="#00b8cc" opacity=".8"/>
+        <line x1="329" y1="200" x2="351" y2="200" stroke="#00b8cc" stroke-width=".7" opacity=".7"/>
+        <line x1="340" y1="189" x2="340" y2="211" stroke="#00b8cc" stroke-width=".7" opacity=".7"/>
+        <line x1="340" y1="156" x2="340" y2="185" stroke="#00b8cc" stroke-width="1.2" opacity=".6"/>
+        <line x1="340" y1="215" x2="340" y2="244" stroke="#00b8cc" stroke-width="1.2" opacity=".6"/>
+        <line x1="306" y1="200" x2="325" y2="200" stroke="#00b8cc" stroke-width="1.2" opacity=".6"/>
+        <line x1="355" y1="200" x2="374" y2="200" stroke="#00b8cc" stroke-width="1.2" opacity=".6"/>
+        <rect x="332" y="136" width="16" height="11" rx="1.5" stroke="#00b8cc" stroke-width="1.5" fill="none"/>
+        <rect x="332" y="253" width="16" height="11" rx="1.5" stroke="#00b8cc" stroke-width="1.5" fill="none"/>
+        <rect x="275" y="193" width="11" height="16" rx="1.5" stroke="#00b8cc" stroke-width="1.5" fill="none"/>
+        <rect x="394" y="193" width="11" height="16" rx="1.5" stroke="#00b8cc" stroke-width="1.5" fill="none"/>
       </g>
-      <!-- CFD Streamlines -->
-      <path d="M 20 300 Q 100 280 180 310 Q 260 340 340 300 Q 420 260 500 290" stroke="#0066cc" stroke-width="1.5" fill="none" opacity=".7" stroke-dasharray="600" style="animation:flow 4s linear infinite;"/>
-      <path d="M 20 330 Q 110 305 190 335 Q 270 365 360 325 Q 440 285 520 315" stroke="#00e5ff" stroke-width="1" fill="none" opacity=".5" stroke-dasharray="600" style="animation:flow 5s linear infinite .8s;"/>
-      <path d="M 20 360 Q 120 335 200 360 Q 290 385 380 350 Q 460 315 520 340" stroke="#00ccaa" stroke-width="1" fill="none" opacity=".4" stroke-dasharray="600" style="animation:flow 6s linear infinite 1.6s;"/>
-      <path d="M 20 390 Q 130 365 210 388 Q 310 410 400 375 Q 470 345 520 368" stroke="#ff6600" stroke-width="1" fill="none" opacity=".3" stroke-dasharray="600" style="animation:flow 7s linear infinite 2.4s;"/>
-      <!-- Dimension lines -->
-      <line x1="60" y1="450" x2="340" y2="450" stroke="#1a4a6a" stroke-width="1"/>
-      <line x1="60" y1="445" x2="60" y2="455" stroke="#1a4a6a" stroke-width="1"/>
-      <line x1="340" y1="445" x2="340" y2="455" stroke="#1a4a6a" stroke-width="1"/>
-      <text x="180" y="468" fill="#1a4a6a" font-size="9" font-family="monospace" text-anchor="middle">Ø 260 mm</text>
-      <!-- Crosshair center -->
-      <circle cx="200" cy="200" r="4" fill="#00e5ff" opacity=".8"/>
-      <line x1="185" y1="200" x2="215" y2="200" stroke="#00e5ff" stroke-width=".5" opacity=".6"/>
-      <line x1="200" y1="185" x2="200" y2="215" stroke="#00e5ff" stroke-width=".5" opacity=".6"/>
+
+      <!-- TINY ACCENT GEAR (bottom left) -->
+      <g id="gear-tiny">
+        <circle cx="80" cy="370" r="36"  stroke="#006a8a" stroke-width="1" fill="none"/>
+        <circle cx="80" cy="370" r="22"  stroke="#006a8a" stroke-width=".8" fill="none" opacity=".6"/>
+        <circle cx="80" cy="370" r="7"   stroke="#006a8a" stroke-width="1" fill="none"/>
+        <line x1="80" y1="334" x2="80" y2="363" stroke="#006a8a" stroke-width="1" opacity=".5"/>
+        <line x1="80" y1="377" x2="80" y2="406" stroke="#006a8a" stroke-width="1" opacity=".5"/>
+        <line x1="44"  y1="370" x2="73"  y2="370" stroke="#006a8a" stroke-width="1" opacity=".5"/>
+        <line x1="87"  y1="370" x2="116" y2="370" stroke="#006a8a" stroke-width="1" opacity=".5"/>
+        <rect x="73" y="328" width="14" height="9"  rx="1" stroke="#006a8a" stroke-width="1" fill="none"/>
+        <rect x="73" y="433" width="14" height="9"  rx="1" stroke="#006a8a" stroke-width="1" fill="none"/>
+        <rect x="35"  y="363" width="9"  height="14" rx="1" stroke="#006a8a" stroke-width="1" fill="none"/>
+        <rect x="116" y="363" width="9"  height="14" rx="1" stroke="#006a8a" stroke-width="1" fill="none"/>
+      </g>
+
+      <!-- CFD STREAMLINES — animated flow paths -->
+      <path d="M10 310 Q90 288 170 316 Q260 346 348 308 Q420 272 490 296"
+        stroke="#0055bb" stroke-width="1.8" fill="none" opacity=".75"
+        stroke-dasharray="600" stroke-dashoffset="600">
+        <animate attributeName="stroke-dashoffset" from="600" to="0" dur="4s" repeatCount="indefinite"/>
+      </path>
+      <path d="M10 338 Q100 312 182 340 Q274 368 366 332 Q434 300 490 322"
+        stroke="#00e5ff" stroke-width="1.2" fill="none" opacity=".55"
+        stroke-dasharray="600" stroke-dashoffset="600">
+        <animate attributeName="stroke-dashoffset" from="600" to="0" dur="5s" begin="0.8s" repeatCount="indefinite"/>
+      </path>
+      <path d="M10 364 Q110 340 194 364 Q292 390 378 358 Q446 328 490 350"
+        stroke="#00ccaa" stroke-width="1" fill="none" opacity=".45"
+        stroke-dasharray="600" stroke-dashoffset="600">
+        <animate attributeName="stroke-dashoffset" from="600" to="0" dur="6s" begin="1.6s" repeatCount="indefinite"/>
+      </path>
+      <path d="M10 390 Q120 366 206 388 Q308 412 396 382 Q460 354 490 374"
+        stroke="#ff6a00" stroke-width=".9" fill="none" opacity=".35"
+        stroke-dasharray="600" stroke-dashoffset="600">
+        <animate attributeName="stroke-dashoffset" from="600" to="0" dur="7s" begin="2.4s" repeatCount="indefinite"/>
+      </path>
+
+      <!-- DIMENSION ANNOTATION -->
+      <line x1="60" y1="448" x2="310" y2="448" stroke="#1a4a6a" stroke-width="1"/>
+      <line x1="60" y1="442" x2="60" y2="454"  stroke="#1a4a6a" stroke-width="1"/>
+      <line x1="310" y1="442" x2="310" y2="454" stroke="#1a4a6a" stroke-width="1"/>
+      <text x="185" y="464" fill="#1a4a6a" font-size="8" font-family="monospace" text-anchor="middle">Ø 240 mm REF</text>
+      <line x1="190" y1="72" x2="230" y2="50" stroke="#1a4a6a" stroke-width=".8"/>
+      <text x="234" y="48" fill="#1a4a6a" font-size="7" font-family="monospace">12T MODULE 2</text>
     </svg>
-
-    <!-- HERO CONTENT -->
-    <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:2rem;">
-      <div style="flex:1;min-width:280px;">
-
-        <!-- CFD LEGEND BAR -->
-        <div class="fade-up delay-1" style="display:flex;align-items:center;gap:.75rem;margin-bottom:1.75rem;flex-wrap:wrap;">
-          <span style="font-family:var(--mono);font-size:.62rem;color:var(--text-dim);letter-spacing:.08em;">LOW</span>
-          <div style="height:3px;width:80px;background:linear-gradient(to right,#0066cc,#00e5ff,#00ccaa,#ff6600);flex-shrink:0;"></div>
-          <span style="font-family:var(--mono);font-size:.62rem;color:var(--text-dim);letter-spacing:.08em;">HIGH — VELOCITY FIELD</span>
-          <span style="width:1px;height:12px;background:var(--border-hi);display:inline-block;margin:0 .25rem;"></span>
-          <span style="font-family:var(--mono);font-size:.62rem;color:var(--accent);letter-spacing:.08em;">CFD · ANSYS FLUENT</span>
-        </div>
-
-        <h1 class="hero-name fade-up delay-2" style="font-family:var(--cond);font-size:clamp(3rem,10vw,6.5rem);font-weight:900;line-height:.92;text-transform:uppercase;letter-spacing:-.01em;margin-bottom:.5rem;" id="hero-name"></h1>
-        <div class="hero-subtitle fade-up delay-3" id="hero-tagline" style="font-family:var(--cond);font-size:clamp(1rem,2.5vw,1.65rem);font-weight:400;color:var(--text-muted);letter-spacing:.05em;text-transform:uppercase;margin-bottom:2rem;margin-top:.5rem;"></div>
-
-        <!-- Bio with engineering annotation style -->
-        <div class="fade-up delay-4" style="position:relative;margin-bottom:2.5rem;">
-          <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,#0066cc,#00e5ff,#00ccaa);"></div>
-          <p id="hero-bio" style="font-size:.95rem;color:var(--text-muted);max-width:560px;line-height:1.9;padding-left:1.25rem;"></p>
-        </div>
-
-        <div class="hero-btns fade-up delay-5" style="display:flex;gap:1rem;flex-wrap:wrap;" id="hero-btns"></div>
-      </div>
-
-      <!-- DESKTOP STATS — styled as spec readout -->
-      <div class="hero-stats-col" style="display:flex;flex-direction:column;gap:1.5rem;text-align:right;padding-left:2rem;" id="hero-stats"></div>
-    </div>
   </div>
 
-  <div class="section-divider"></div>
+  <!-- HERO CONTENT -->
+  <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:2rem;">
+    <div style="flex:1;min-width:280px;">
 
-  <!-- ABOUT -->
-  <section class="section">
-    <div class="section-header">
-      <span class="section-num">01.</span>
-      <h2 class="section-title">About Me</h2>
-      <div class="section-line"></div>
-    </div>
-    <div class="grid-2" style="align-items:start;gap:3rem;">
-      <div style="display:flex;gap:2rem;align-items:start;flex-wrap:wrap;">
-        <div id="about-photo"></div>
-        <div id="about-bio" style="flex:1;min-width:200px;"></div>
+      <!-- CFD VELOCITY LEGEND -->
+      <div class="fu d1" style="display:flex;align-items:center;gap:.75rem;margin-bottom:1.75rem;flex-wrap:wrap;">
+        <span style="font-family:var(--mono);font-size:.6rem;color:var(--txt3);letter-spacing:.08em;">LOW</span>
+        <div style="height:3px;width:90px;background:linear-gradient(to right,#0055bb,#00e5ff,#00ccaa,#ff6a00);flex-shrink:0;"></div>
+        <span style="font-family:var(--mono);font-size:.6rem;color:var(--txt3);letter-spacing:.08em;">HIGH  VELOCITY FIELD</span>
+        <span style="width:1px;height:10px;background:var(--bdr2);display:inline-block;"></span>
+        <span style="font-family:var(--mono);font-size:.6rem;color:var(--cyan);letter-spacing:.08em;">CFD · ANSYS FLUENT</span>
       </div>
-      <div class="flex-col" id="about-details"></div>
+
+      <h1 class="hero-name fu d2" style="font-family:var(--cond);font-size:clamp(3rem,10vw,6.5rem);font-weight:900;line-height:.9;text-transform:uppercase;letter-spacing:-.01em;margin-bottom:.5rem;" id="hero-name"></h1>
+      <div class="hero-sub fu d3" id="hero-tag" style="font-family:var(--cond);font-size:clamp(1rem,2.5vw,1.6rem);font-weight:400;color:var(--txt2);letter-spacing:.05em;text-transform:uppercase;margin-bottom:2rem;margin-top:.5rem;"></div>
+
+      <!-- Bio — CFD gradient left border -->
+      <div class="fu d4" style="position:relative;margin-bottom:2.5rem;">
+        <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,#0055bb,#00e5ff,#00ccaa);"></div>
+        <p id="hero-bio" style="font-size:.95rem;color:var(--txt2);max-width:560px;line-height:1.9;padding-left:1.25rem;"></p>
+      </div>
+
+      <div class="hero-btns fu d5" style="display:flex;gap:1rem;flex-wrap:wrap;" id="hero-btns"></div>
     </div>
-  </section>
+
+    <!-- STATS -->
+    <div class="stats-col" style="display:flex;flex-direction:column;gap:1.25rem;text-align:right;padding-left:2rem;" id="hero-stats"></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══ ABOUT ══════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="section-hdr">
+    <span class="sec-num">01</span>
+    <h2 class="sec-title">About Me</h2>
+    <div class="sec-line"></div>
+  </div>
+  <div class="g2" style="align-items:start;gap:3rem;">
+    <div style="display:flex;gap:2rem;align-items:start;flex-wrap:wrap;">
+      <div id="about-photo"></div>
+      <div id="about-bio" style="flex:1;min-width:200px;"></div>
+    </div>
+    <div class="fc" id="about-det"></div>
+  </div>
+</section>
 
 </div>
 <footer id="footer"></footer>
 
-<style>
-  @keyframes flow { from{stroke-dashoffset:600} to{stroke-dashoffset:0} }
-</style>
 <script src="assets/js/data.js"></script>
 <script src="assets/js/render.js"></script>
 <script>
-  renderNav('index');
-  renderFooter();
+renderNav('index');
+renderFooter();
 
-  const parts = DATA.name.split(' ');
-  const last = parts.pop();
-  document.getElementById('hero-name').innerHTML =
-    parts.join(' ') + '<br><span style="color:var(--accent)">' + last + '</span><span class="cursor"></span>';
+const parts=DATA.name.split(' ');
+const last=parts.pop();
+document.getElementById('hero-name').innerHTML=parts.join(' ')+'<br><span style="color:var(--cyan)">'+last+'</span><span class="cursor"></span>';
+document.getElementById('hero-tag').textContent=DATA.tagline;
+document.getElementById('hero-bio').textContent=DATA.bio[0];
+document.getElementById('hero-btns').innerHTML=`
+  <a href="mailto:${DATA.email}" class="btn btn-p">Get In Touch</a>
+  <a href="${DATA.linkedin}" target="_blank" class="btn btn-o">LinkedIn</a>
+  ${DATA.cv_file?`<a href="${DATA.cv_file}" download class="btn btn-o">⬇ Download CV</a>`:''}`;
+document.getElementById('hero-stats').innerHTML=(DATA.stats||[]).map(s=>`
+  <div class="stat-box" style="text-align:right;">
+    <div class="stat-num">${s.num}</div>
+    <div class="stat-lbl">${s.label}</div>
+  </div>`).join('');
+document.getElementById('about-photo').innerHTML=renderPhoto(190);
+document.getElementById('about-bio').innerHTML=(DATA.bio||[]).map(b=>`<p style="color:var(--txt2);margin-bottom:1rem;line-height:1.85;">${b}</p>`).join('');
+document.getElementById('about-det').innerHTML=renderDetails();
 
-  document.getElementById('hero-tagline').textContent = DATA.tagline;
-  document.getElementById('hero-bio').textContent = DATA.bio[0];
+// ── GEAR ROTATION via requestAnimationFrame (cross-browser) ──
+const gearBig   = document.getElementById('gear-big');
+const gearSmall = document.getElementById('gear-small');
+const gearTiny  = document.getElementById('gear-tiny');
+let angleBig=0, angleSmall=0, angleTiny=0;
+const CX_BIG=190, CY_BIG=200;
+const CX_SM=340,  CY_SM=200;
+const CX_TN=80,   CY_TN=370;
 
-  document.getElementById('hero-btns').innerHTML = `
-    <a href="mailto:${DATA.email}" class="btn btn-primary">Get In Touch</a>
-    <a href="${DATA.linkedin}" target="_blank" class="btn btn-outline">LinkedIn</a>
-    ${DATA.cv_file ? `<a href="${DATA.cv_file}" download class="btn btn-outline">⬇ Download CV</a>` : ''}
-  `;
-
-  // Stats styled as engineering spec readout
-  document.getElementById('hero-stats').innerHTML = DATA.stats.map(s => `
-    <div style="border:1px solid var(--border);padding:.75rem 1rem;min-width:100px;background:var(--surface);position:relative;">
-      <div style="position:absolute;top:4px;right:4px;width:6px;height:6px;border-top:1px solid var(--border-hi);border-right:1px solid var(--border-hi);"></div>
-      <div class="stat-num">${s.num}</div>
-      <div class="stat-label">${s.label}</div>
-    </div>`).join('');
-
-  document.getElementById('about-photo').innerHTML = renderPhoto(190);
-  document.getElementById('about-bio').innerHTML = DATA.bio.map(b => `<p style="color:var(--text-muted);margin-bottom:1rem;line-height:1.85;">${b}</p>`).join('');
-  document.getElementById('about-details').innerHTML = renderDetails();
+function animateGears(){
+  angleBig   += 0.012;
+  angleSmall -= 0.017;
+  angleTiny  += 0.025;
+  if(gearBig)   gearBig.setAttribute('transform',   `rotate(${angleBig}   ${CX_BIG} ${CY_BIG})`);
+  if(gearSmall) gearSmall.setAttribute('transform', `rotate(${angleSmall} ${CX_SM}  ${CY_SM})`);
+  if(gearTiny)  gearTiny.setAttribute('transform',  `rotate(${angleTiny}  ${CX_TN}  ${CY_TN})`);
+  requestAnimationFrame(animateGears);
+}
+animateGears();
 </script>
 </body>
 </html>

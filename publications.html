@@ -8,24 +8,24 @@
 <body>
 <nav class="nav" id="nav"></nav>
 <div class="page">
-  <section class="section">
-    <div class="section-header">
-      <span class="section-num">05.</span>
-      <h2 class="section-title">Publications & Conferences</h2>
-      <div class="section-line"></div>
-    </div>
-    <div class="flex-col" id="pub-list"></div>
-    <p style="margin-top:2rem;font-family:var(--mono);font-size:.72rem;color:var(--text-dim);">
-      // Additional journal publications from MSc research in progress — details updated upon publication.
-    </p>
-  </section>
+<section class="section">
+  <div class="section-hdr">
+    <span class="sec-num">05</span>
+    <h2 class="sec-title">Publications & Conferences</h2>
+    <div class="sec-line"></div>
+  </div>
+  <div class="fc" id="pub-content"></div>
+  <p style="margin-top:2rem;font-family:var(--mono);font-size:.7rem;color:var(--txt3);">
+    // Additional journal publications from MSc research in progress — updated upon publication.
+  </p>
+</section>
 </div>
 <footer id="footer"></footer>
 <script src="assets/js/data.js"></script>
 <script src="assets/js/render.js"></script>
 <script>
   renderNav('publications'); renderFooter();
-  document.getElementById('pub-list').innerHTML = renderPublications();
+  document.getElementById('pub-content').innerHTML = renderPublications();
 </script>
 </body>
 </html>

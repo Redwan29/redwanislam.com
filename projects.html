@@ -8,21 +8,19 @@
 <body>
 <nav class="nav" id="nav"></nav>
 <div class="page">
-  <section class="section">
-    <div class="section-header">
-      <span class="section-num">04.</span>
-      <h2 class="section-title">Projects</h2>
-      <div class="section-line"></div>
-    </div>
-    <div class="grid-auto" id="proj-list"></div>
-  </section>
+<section class="section">
+  <div class="section-hdr">
+    <span class="sec-num">04</span>
+    <h2 class="sec-title">Projects</h2>
+    <div class="sec-line"></div>
+  </div>
+  <div id="content"><div class="ga" id="content-inner"></div></div>
+  
+</section>
 </div>
 <footer id="footer"></footer>
 <script src="assets/js/data.js"></script>
 <script src="assets/js/render.js"></script>
-<script>
-  renderNav('projects'); renderFooter();
-  document.getElementById('proj-list').innerHTML = renderProjects();
-</script>
+<script>renderNav('projects');renderFooter();document.getElementById('content').innerHTML='<div class="ga">'+renderProjects()+'</div>';</script>
 </body>
 </html>

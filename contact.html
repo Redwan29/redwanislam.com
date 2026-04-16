@@ -8,64 +8,46 @@
 <body>
 <nav class="nav" id="nav"></nav>
 <div class="page">
-  <section class="section">
-    <div class="section-header">
-      <span class="section-num">07.</span>
-      <h2 class="section-title">Contact</h2>
-      <div class="section-line"></div>
+<section class="section">
+  <div class="section-hdr"><span class="sec-num">07</span><h2 class="sec-title">Contact</h2><div class="sec-line"></div></div>
+  <div class="g2" style="align-items:start;gap:3rem;">
+    <div>
+      <p style="color:var(--txt2);line-height:1.85;margin-bottom:2rem;font-size:.95rem;">Open to graduate engineering roles, CFD research collaborations, and PhD opportunities in the UK and internationally.</p>
+      <div class="fc" id="clinks"></div>
     </div>
-    <div class="grid-2" style="align-items:start;gap:3rem;">
-      <div>
-        <p style="color:var(--text-muted);line-height:1.85;margin-bottom:2rem;font-size:.95rem;">
-          I'm open to graduate engineering roles, CFD research collaborations, and PhD opportunities in the UK and internationally. Feel free to reach out.
-        </p>
-        <div class="flex-col" id="contact-links"></div>
-      </div>
-      <div class="flex-col">
-        <div class="form-group"><label>Your Name</label><input type="text" placeholder="Jane Smith" id="fc-name"></div>
-        <div class="form-group"><label>Your Email</label><input type="email" placeholder="jane@company.com" id="fc-email"></div>
-        <div class="form-group"><label>Subject</label><input type="text" placeholder="Graduate Engineer Role / Collaboration" id="fc-subj"></div>
-        <div class="form-group"><label>Message</label><textarea placeholder="Hello Redwan, I'd like to discuss..." id="fc-msg"></textarea></div>
-        <button class="btn btn-primary" id="send-btn" style="margin-top:.25rem;">Send via Email</button>
-      </div>
+    <div class="fc">
+      <div class="form-grp"><label>Your Name</label><input id="fn" placeholder="Jane Smith"></div>
+      <div class="form-grp"><label>Your Email</label><input id="fe" type="email" placeholder="jane@company.com"></div>
+      <div class="form-grp"><label>Subject</label><input id="fs" placeholder="Graduate Engineer Role"></div>
+      <div class="form-grp"><label>Message</label><textarea id="fm" placeholder="Hello Redwan..."></textarea></div>
+      <button class="btn btn-p" onclick="sendMsg()">Send via Email</button>
     </div>
-  </section>
+  </div>
+</section>
 </div>
 <footer id="footer"></footer>
 <script src="assets/js/data.js"></script>
 <script src="assets/js/render.js"></script>
 <script>
-  renderNav('contact'); renderFooter();
-
-  document.getElementById('contact-links').innerHTML = `
-    <a href="mailto:${DATA.email}" class="contact-link">
-      <span class="contact-link-icon">EMAIL</span>
-      <span class="contact-link-val">${DATA.email}</span>
-    </a>
-    <a href="${DATA.linkedin}" target="_blank" class="contact-link">
-      <span class="contact-link-icon">LINKEDIN</span>
-      <span class="contact-link-val">linkedin.com/in/redwanislam98</span>
-    </a>
-    <a href="${DATA.website}" target="_blank" class="contact-link">
-      <span class="contact-link-icon">WEBSITE</span>
-      <span class="contact-link-val">${DATA.website.replace('https://','')}</span>
-    </a>
-    <a href="https://wa.me/${DATA.whatsapp.replace(/\D/g,'')}" target="_blank" class="contact-link">
-      <span class="contact-link-icon">WHATSAPP</span>
-      <span class="contact-link-val">${DATA.whatsapp}</span>
-    </a>
-    ${DATA.cv_file ? `<a href="${DATA.cv_file}" download class="btn btn-primary" style="margin-top:.5rem;justify-content:center;">⬇ Download CV</a>` : ''}
-  `;
-
-  document.getElementById('send-btn').addEventListener('click', () => {
-    const name  = document.getElementById('fc-name').value.trim();
-    const email = document.getElementById('fc-email').value.trim();
-    const subj  = document.getElementById('fc-subj').value.trim() || 'Portfolio Enquiry';
-    const msg   = document.getElementById('fc-msg').value.trim();
-    if(!name || !msg) { alert('Please fill in your name and message.'); return; }
-    const body = encodeURIComponent(`Hi Redwan,\n\n${msg}\n\nBest,\n${name}\n${email}`);
-    window.location.href = `mailto:${DATA.email}?subject=${encodeURIComponent(subj)}&body=${body}`;
-  });
+renderNav('contact');renderFooter();
+function renderContactLinks(){
+  document.getElementById('clinks').innerHTML=`
+    <a href="mailto:${DATA.email}" class="contact-link"><span class="cl-icon">EMAIL</span><span class="cl-val">${DATA.email}</span></a>
+    <a href="${DATA.linkedin}" target="_blank" class="contact-link"><span class="cl-icon">LINKEDIN</span><span class="cl-val">linkedin.com/in/redwanislam98</span></a>
+    <a href="${DATA.website}" target="_blank" class="contact-link"><span class="cl-icon">WEBSITE</span><span class="cl-val">${(DATA.website||'').replace('https://','')}</span></a>
+    <a href="https://wa.me/${(DATA.whatsapp||'').replace(/\D/g,'')}" target="_blank" class="contact-link"><span class="cl-icon">WHATSAPP</span><span class="cl-val">${DATA.whatsapp}</span></a>
+    ${DATA.cv_file?`<a href="${DATA.cv_file}" download class="btn btn-p" style="margin-top:.5rem;justify-content:center;text-align:center;">⬇ Download CV</a>`:''}`;
+}
+renderContactLinks();
+function sendMsg(){
+  const name=document.getElementById('fn').value.trim();
+  const msg=document.getElementById('fm').value.trim();
+  if(!name||!msg){alert('Fill in name and message.');return;}
+  const subj=document.getElementById('fs').value||'Portfolio Enquiry';
+  const email=document.getElementById('fe').value;
+  const body=encodeURIComponent('Hi Redwan,\n\n'+msg+'\n\nBest,\n'+name+'\n'+email);
+  window.location.href='mailto:'+DATA.email+'?subject='+encodeURIComponent(subj)+'&body='+body;
+}
 </script>
 </body>
 </html>
