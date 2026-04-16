@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Contact | Md Redwan Islam</title>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<nav class="nav" id="nav"></nav>
+<div class="page">
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">07.</span>
+      <h2 class="section-title">Contact</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="grid-2" style="align-items:start;gap:3rem;">
+      <div>
+        <p style="color:var(--text-muted);line-height:1.85;margin-bottom:2rem;font-size:.95rem;">
+          I'm open to graduate engineering roles, CFD research collaborations, and PhD opportunities in the UK and internationally. Feel free to reach out.
+        </p>
+        <div class="flex-col" id="contact-links"></div>
+      </div>
+      <div class="flex-col">
+        <div class="form-group"><label>Your Name</label><input type="text" placeholder="Jane Smith" id="fc-name"></div>
+        <div class="form-group"><label>Your Email</label><input type="email" placeholder="jane@company.com" id="fc-email"></div>
+        <div class="form-group"><label>Subject</label><input type="text" placeholder="Graduate Engineer Role / Collaboration" id="fc-subj"></div>
+        <div class="form-group"><label>Message</label><textarea placeholder="Hello Redwan, I'd like to discuss..." id="fc-msg"></textarea></div>
+        <button class="btn btn-primary" id="send-btn" style="margin-top:.25rem;">Send via Email</button>
+      </div>
+    </div>
+  </section>
+</div>
+<footer id="footer"></footer>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/render.js"></script>
+<script>
+  renderNav('contact'); renderFooter();
+
+  document.getElementById('contact-links').innerHTML = `
+    <a href="mailto:${DATA.email}" class="contact-link">
+      <span class="contact-link-icon">EMAIL</span>
+      <span class="contact-link-val">${DATA.email}</span>
+    </a>
+    <a href="${DATA.linkedin}" target="_blank" class="contact-link">
+      <span class="contact-link-icon">LINKEDIN</span>
+      <span class="contact-link-val">linkedin.com/in/redwanislam98</span>
+    </a>
+    <a href="${DATA.website}" target="_blank" class="contact-link">
+      <span class="contact-link-icon">WEBSITE</span>
+      <span class="contact-link-val">${DATA.website.replace('https://','')}</span>
+    </a>
+    <a href="https://wa.me/${DATA.whatsapp.replace(/\D/g,'')}" target="_blank" class="contact-link">
+      <span class="contact-link-icon">WHATSAPP</span>
+      <span class="contact-link-val">${DATA.whatsapp}</span>
+    </a>
+    ${DATA.cv_file ? `<a href="${DATA.cv_file}" download class="btn btn-primary" style="margin-top:.5rem;justify-content:center;">⬇ Download CV</a>` : ''}
+  `;
+
+  document.getElementById('send-btn').addEventListener('click', () => {
+    const name  = document.getElementById('fc-name').value.trim();
+    const email = document.getElementById('fc-email').value.trim();
+    const subj  = document.getElementById('fc-subj').value.trim() || 'Portfolio Enquiry';
+    const msg   = document.getElementById('fc-msg').value.trim();
+    if(!name || !msg) { alert('Please fill in your name and message.'); return; }
+    const body = encodeURIComponent(`Hi Redwan,\n\n${msg}\n\nBest,\n${name}\n${email}`);
+    window.location.href = `mailto:${DATA.email}?subject=${encodeURIComponent(subj)}&body=${body}`;
+  });
+</script>
+</body>
+</html>

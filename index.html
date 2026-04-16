@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Md Redwan Islam | Portfolio</title>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<nav class="nav" id="nav"></nav>
+<div class="page">
+
+  <!-- HERO -->
+  <div style="min-height:100vh;display:flex;align-items:center;position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:6rem 2rem 4rem;">
+    <div style="flex:1;">
+      <div class="fade-up delay-1" style="font-family:var(--mono);font-size:.75rem;color:var(--accent);letter-spacing:.15em;text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:.75rem;">
+        <span style="width:40px;height:1px;background:var(--accent);display:inline-block;"></span>
+        Mechanical Engineer & CFD Researcher
+      </div>
+      <h1 class="fade-up delay-2" style="font-family:var(--cond);font-size:clamp(3.2rem,9vw,6.5rem);font-weight:900;line-height:.92;text-transform:uppercase;letter-spacing:-.01em;margin-bottom:.5rem;" id="hero-name"></h1>
+      <div class="fade-up delay-3" id="hero-tagline" style="font-family:var(--cond);font-size:clamp(1.1rem,2.5vw,1.65rem);font-weight:400;color:var(--text-muted);letter-spacing:.05em;text-transform:uppercase;margin-bottom:2rem;margin-top:.5rem;"></div>
+      <p class="fade-up delay-4" style="font-size:1rem;color:var(--text-muted);max-width:580px;line-height:1.85;margin-bottom:2.5rem;border-left:2px solid var(--accent2);padding-left:1.25rem;" id="hero-bio"></p>
+      <div class="fade-up delay-5" style="display:flex;gap:1rem;flex-wrap:wrap;" id="hero-btns"></div>
+    </div>
+
+    <!-- STATS -->
+    <div style="display:flex;flex-direction:column;gap:2rem;text-align:right;padding-left:3rem;" id="hero-stats"></div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- ABOUT -->
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">01.</span>
+      <h2 class="section-title">About Me</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="grid-2" style="align-items:start;gap:3rem;">
+      <div style="display:flex;gap:2rem;align-items:start;flex-wrap:wrap;">
+        <div id="about-photo"></div>
+        <div id="about-bio" style="flex:1;min-width:200px;"></div>
+      </div>
+      <div class="flex-col" id="about-details"></div>
+    </div>
+  </section>
+
+</div>
+<footer id="footer"></footer>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/render.js"></script>
+<script>
+  renderNav('index');
+  renderFooter();
+
+  // Hero name
+  const parts = DATA.name.split(' ');
+  const last = parts.pop();
+  document.getElementById('hero-name').innerHTML =
+    parts.join(' ') + '<br><span style="color:var(--accent)">' + last + '</span><span class="cursor"></span>';
+
+  document.getElementById('hero-tagline').textContent = DATA.tagline;
+  document.getElementById('hero-bio').textContent = DATA.bio[0];
+
+  document.getElementById('hero-btns').innerHTML = `
+    <a href="mailto:${DATA.email}" class="btn btn-primary">Get In Touch</a>
+    <a href="${DATA.linkedin}" target="_blank" class="btn btn-outline">LinkedIn</a>
+    ${DATA.cv_file ? `<a href="${DATA.cv_file}" download class="btn btn-outline">⬇ Download CV</a>` : ''}
+  `;
+
+  document.getElementById('hero-stats').innerHTML = DATA.stats.map(s => `
+    <div>
+      <div class="stat-num">${s.num}</div>
+      <div class="stat-label">${s.label}</div>
+    </div>`).join('');
+
+  document.getElementById('about-photo').innerHTML = renderPhoto(190);
+  document.getElementById('about-bio').innerHTML = DATA.bio.map(b => `<p style="color:var(--text-muted);margin-bottom:1rem;line-height:1.85;">${b}</p>`).join('');
+  document.getElementById('about-details').innerHTML = renderDetails();
+</script>
+</body>
+</html>
