@@ -6,335 +6,345 @@
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg:#020608; --surface:#07111a; --surface2:#0e1e2b;
-  --border:#1a3040; --border-hi:#2a5070;
+  --bg:#010a12; --surface:#051018; --surface2:#0a1e2e;
+  --border:#0f2d44; --border-hi:#1a4a6a;
   --accent:#00e5ff; --accent2:#00b8cc;
   --green:#00e676; --orange:#ff9100; --red:#ff5252;
-  --text:#ffffff; --text-muted:#9ecfe0; --text-dim:#4d8090;
-  --mono:'Share Tech Mono',monospace;
-  --sans:'Barlow',sans-serif;
+  --text:#ffffff; --text-muted:#8ec8e0; --text-dim:#3a6880;
+  --mono:'Share Tech Mono',monospace; --sans:'Barlow',sans-serif;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
-body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:100vh;}
-body::before{
-  content:'';position:fixed;inset:0;
-  background-image:linear-gradient(rgba(0,229,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,.04) 1px,transparent 1px);
-  background-size:44px 44px;pointer-events:none;z-index:0;
-}
+html,body{height:100%;}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);}
+body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(circle,rgba(0,180,220,.18) 1px,transparent 1px);background-size:24px 24px;pointer-events:none;z-index:0;}
 
-/* LOGIN */
-#login-screen{
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  min-height:100vh;position:relative;z-index:1;gap:1.5rem;
-}
-.login-box{
-  background:var(--surface);border:1px solid var(--border-hi);
-  padding:3rem 2.5rem;width:360px;text-align:center;
-}
+/* ── LOGIN ── */
+#login-screen{display:flex;align-items:center;justify-content:center;min-height:100vh;position:relative;z-index:1;}
+.login-box{background:var(--surface);border:1px solid var(--border-hi);padding:3rem 2.5rem;width:360px;text-align:center;}
 .login-box h1{font-family:var(--mono);font-size:1rem;color:var(--accent);letter-spacing:.1em;margin-bottom:.5rem;}
 .login-box p{font-size:.8rem;color:var(--text-muted);margin-bottom:2rem;}
 
-/* CMS */
-#cms-screen{display:none;position:relative;z-index:1;}
+/* ── CMS LAYOUT ── */
+#cms-screen{display:none;height:100vh;flex-direction:column;position:relative;z-index:1;}
 .cms-header{
-  position:sticky;top:0;z-index:50;
-  background:rgba(2,6,8,.96);backdrop-filter:blur(14px);
-  border-bottom:1px solid var(--border);
-  padding:0 2rem;height:58px;
-  display:flex;align-items:center;justify-content:space-between;
+  height:58px;background:rgba(1,10,18,.97);border-bottom:2px solid var(--border-hi);
+  display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;
+  flex-shrink:0;
 }
-.cms-logo{font-family:var(--mono);font-size:.85rem;color:var(--accent);}
-.cms-body{display:grid;grid-template-columns:220px 1fr;min-height:calc(100vh - 58px);}
-.cms-nav{background:var(--surface);border-right:1px solid var(--border);padding:1.5rem 0;}
+.cms-logo{font-family:var(--mono);font-size:.9rem;color:var(--accent);}
+.cms-body{display:grid;grid-template-columns:210px 1fr;flex:1;overflow:hidden;}
+.cms-nav{background:var(--surface);border-right:1px solid var(--border-hi);overflow-y:auto;padding:1rem 0;}
 .cms-nav-item{
-  display:block;padding:.7rem 1.5rem;
-  font-family:var(--mono);font-size:.72rem;color:var(--text-muted);
-  letter-spacing:.08em;text-transform:uppercase;
-  cursor:pointer;transition:all .2s;border-left:2px solid transparent;
+  display:block;padding:.65rem 1.25rem;
+  font-family:var(--mono);font-size:.68rem;color:var(--text-muted);
+  letter-spacing:.08em;text-transform:uppercase;cursor:pointer;
+  transition:all .15s;border-left:2px solid transparent;
 }
-.cms-nav-item:hover,.cms-nav-item.active{color:var(--accent);border-left-color:var(--accent);background:rgba(0,229,255,.04);}
-.cms-main{padding:2.5rem;}
+.cms-nav-item:hover{color:var(--accent);background:rgba(0,229,255,.03);}
+.cms-nav-item.active{color:var(--accent);border-left-color:var(--accent);background:rgba(0,229,255,.05);}
+.cms-main{overflow-y:auto;padding:2rem;}
 .cms-section{display:none;}
 .cms-section.active{display:block;}
-.cms-section h2{font-family:var(--mono);font-size:.85rem;color:var(--accent);letter-spacing:.1em;margin-bottom:1.5rem;padding-bottom:.75rem;border-bottom:1px solid var(--border);}
+.cms-section h2{font-family:var(--mono);font-size:.8rem;color:var(--accent);letter-spacing:.1em;margin-bottom:1.5rem;padding-bottom:.75rem;border-bottom:1px solid var(--border-hi);}
 
-/* FORM */
-.form-group{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1.25rem;}
-.form-group label{font-family:var(--mono);font-size:.65rem;color:var(--accent);letter-spacing:.1em;text-transform:uppercase;}
+/* ── HOW IT WORKS BANNER ── */
+.how-it-works{background:rgba(0,229,255,.06);border:1px solid rgba(0,229,255,.2);padding:1rem 1.25rem;margin-bottom:2rem;border-radius:0;}
+.how-it-works p{font-size:.82rem;color:var(--text-muted);line-height:1.7;}
+.how-it-works strong{color:var(--accent);}
+
+/* ── FORMS ── */
+.form-group{display:flex;flex-direction:column;gap:.35rem;margin-bottom:1rem;}
+.form-group label{font-family:var(--mono);font-size:.62rem;color:var(--accent);letter-spacing:.1em;text-transform:uppercase;}
 .form-group input,.form-group textarea,.form-group select{
   background:var(--surface2);border:1px solid var(--border-hi);color:var(--text);
-  padding:.7rem 1rem;font-family:var(--sans);font-size:.875rem;outline:none;
+  padding:.65rem .9rem;font-family:var(--sans);font-size:.875rem;outline:none;
   transition:border-color .2s;width:100%;
 }
 .form-group input:focus,.form-group textarea:focus{border-color:var(--accent2);}
-.form-group textarea{resize:vertical;min-height:90px;}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;}
-.hint{font-size:.75rem;color:var(--text-dim);margin-top:.25rem;}
+.form-group textarea{resize:vertical;min-height:80px;}
+.hint{font-size:.72rem;color:var(--text-dim);margin-top:.2rem;}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
 
-/* BUTTONS */
-.btn{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;padding:.65rem 1.4rem;border:1px solid;cursor:pointer;transition:all .2s;}
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;padding:.6rem 1.2rem;border:1px solid;cursor:pointer;transition:all .2s;}
 .btn-primary{background:var(--accent);border-color:var(--accent);color:var(--bg);font-weight:700;}
 .btn-primary:hover{background:transparent;color:var(--accent);}
 .btn-outline{background:transparent;border-color:var(--border-hi);color:var(--text-muted);}
 .btn-outline:hover{border-color:var(--accent);color:var(--accent);}
+.btn-green{background:rgba(0,230,118,.12);border-color:rgba(0,230,118,.4);color:var(--green);}
+.btn-green:hover{background:rgba(0,230,118,.25);}
 .btn-danger{background:transparent;border-color:rgba(255,82,82,.4);color:var(--red);}
 .btn-danger:hover{background:rgba(255,82,82,.1);}
+.btn-sm{padding:.35rem .75rem;font-size:.62rem;}
 
-/* CARD LIST */
-.item-card{background:var(--surface);border:1px solid var(--border);padding:1.25rem;margin-bottom:1rem;position:relative;}
-.item-card-header{display:flex;justify-content:space-between;align-items:start;gap:1rem;}
-.item-card-title{font-weight:700;font-size:.95rem;margin-bottom:.25rem;}
-.item-card-sub{font-size:.8rem;color:var(--text-muted);}
-.item-btns{display:flex;gap:.5rem;flex-shrink:0;}
+/* ── ITEM CARDS ── */
+.item-card{background:var(--surface);border:1px solid var(--border);padding:1.1rem;margin-bottom:.85rem;}
+.item-card-header{display:flex;justify-content:space-between;align-items:start;gap:.75rem;}
+.item-title{font-weight:700;font-size:.9rem;margin-bottom:.15rem;}
+.item-sub{font-size:.75rem;color:var(--text-muted);}
+.item-btns{display:flex;gap:.4rem;flex-shrink:0;}
+.item-form{display:none;margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);}
+.item-form.open{display:block;}
 
-/* PHOTO UPLOAD */
-.photo-drop{
-  border:2px dashed var(--border-hi);padding:2.5rem;text-align:center;cursor:pointer;
-  transition:border-color .2s;background:var(--surface2);
-}
-.photo-drop:hover{border-color:var(--accent2);}
-.photo-preview{max-width:200px;max-height:200px;margin:1rem auto;border:2px solid var(--accent);}
-.photo-drop p{font-size:.82rem;color:var(--text-muted);margin-bottom:.5rem;}
-.photo-drop small{font-family:var(--mono);font-size:.65rem;color:var(--text-dim);}
-
-/* SAVE BANNER */
-.save-banner{
+/* ── SAVE TOAST ── */
+.toast{
   position:fixed;bottom:1.5rem;right:1.5rem;z-index:999;
-  background:var(--green);color:#000;
-  font-family:var(--mono);font-size:.75rem;letter-spacing:.08em;
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;
   padding:.75rem 1.5rem;display:none;
-  animation:slideIn .3s ease;
 }
-@keyframes slideIn{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
+.toast.success{background:var(--green);color:#000;}
+.toast.error{background:var(--red);color:#fff;}
 
-/* STATUS */
-.status-ok{color:var(--green);font-family:var(--mono);font-size:.72rem;}
-.status-warn{color:var(--orange);font-family:var(--mono);font-size:.72rem;}
+/* ── PHOTO UPLOAD ── */
+.drop-zone{border:2px dashed var(--border-hi);padding:2rem;text-align:center;cursor:pointer;transition:border-color .2s;background:var(--surface2);}
+.drop-zone:hover{border-color:var(--accent2);}
+.drop-zone p{font-size:.82rem;color:var(--text-muted);margin-bottom:.4rem;}
+.drop-zone small{font-family:var(--mono);font-size:.62rem;color:var(--text-dim);}
+#photo-preview{max-width:180px;max-height:180px;margin:1rem auto;border:2px solid var(--accent);display:none;}
+
+@media(max-width:700px){
+  .cms-body{grid-template-columns:1fr;}
+  .cms-nav{display:none;}
+  .grid2{grid-template-columns:1fr;}
+}
 </style>
 </head>
 <body>
 
-<!-- LOGIN -->
+<!-- ── LOGIN ── -->
 <div id="login-screen">
   <div class="login-box">
     <h1>// PORTFOLIO CMS</h1>
-    <p>Enter your password to manage content</p>
+    <p>Manage your portfolio content</p>
     <div class="form-group">
       <label>Password</label>
-      <input type="password" id="pwd-input" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()">
+      <input type="password" id="pwd" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()">
     </div>
-    <p id="login-err" style="color:var(--red);font-size:.78rem;min-height:1rem;margin-bottom:.75rem;"></p>
+    <p id="login-err" style="color:var(--red);font-size:.75rem;min-height:1.2rem;margin-bottom:.75rem;"></p>
     <button class="btn btn-primary" onclick="doLogin()" style="width:100%;">Login</button>
-    <p style="margin-top:1.5rem;font-size:.72rem;color:var(--text-dim);">Default password: <span style="color:var(--accent);">redwan2025</span></p>
+    <p style="margin-top:1.5rem;font-size:.7rem;color:var(--text-dim);">Default password: <span style="color:var(--accent);">redwan2025</span></p>
   </div>
 </div>
 
-<!-- CMS -->
+<!-- ── CMS ── -->
 <div id="cms-screen">
   <div class="cms-header">
-    <div class="cms-logo">// Portfolio CMS — Md Redwan Islam</div>
-    <div style="display:flex;gap:1rem;align-items:center;">
-      <a href="index.html" target="_blank" class="btn btn-outline" style="font-size:.65rem;padding:.4rem .9rem;">↗ View Site</a>
-      <button class="btn btn-danger" onclick="doLogout()" style="font-size:.65rem;padding:.4rem .9rem;">Logout</button>
+    <div class="cms-logo">// Portfolio CMS</div>
+    <div style="display:flex;gap:.75rem;align-items:center;">
+      <a href="index.html" target="_blank" class="btn btn-outline btn-sm">↗ View Site</a>
+      <button class="btn btn-danger btn-sm" onclick="doLogout()">Logout</button>
     </div>
   </div>
 
   <div class="cms-body">
     <!-- SIDEBAR -->
     <nav class="cms-nav">
-      <div class="cms-nav-item active" onclick="showSection('general')">⚙ General</div>
-      <div class="cms-nav-item" onclick="showSection('photo')">🖼 Photo</div>
-      <div class="cms-nav-item" onclick="showSection('about')">👤 About & Bio</div>
-      <div class="cms-nav-item" onclick="showSection('experience')">💼 Experience</div>
-      <div class="cms-nav-item" onclick="showSection('education')">🎓 Education</div>
-      <div class="cms-nav-item" onclick="showSection('projects')">🔬 Projects</div>
-      <div class="cms-nav-item" onclick="showSection('publications')">📄 Publications</div>
-      <div class="cms-nav-item" onclick="showSection('skills')">⚡ Skills</div>
-      <div class="cms-nav-item" onclick="showSection('honours')">🏅 Honours</div>
-      <div class="cms-nav-item" onclick="showSection('export')">💾 Export</div>
+      <div class="cms-nav-item active" data-sec="general"   onclick="show(this,'general')">⚙ General</div>
+      <div class="cms-nav-item"        data-sec="photo"     onclick="show(this,'photo')">🖼 Photo</div>
+      <div class="cms-nav-item"        data-sec="bio"       onclick="show(this,'bio')">👤 Bio & Details</div>
+      <div class="cms-nav-item"        data-sec="exp"       onclick="show(this,'exp')">💼 Experience</div>
+      <div class="cms-nav-item"        data-sec="edu"       onclick="show(this,'edu')">🎓 Education</div>
+      <div class="cms-nav-item"        data-sec="proj"      onclick="show(this,'proj')">🔬 Projects</div>
+      <div class="cms-nav-item"        data-sec="pub"       onclick="show(this,'pub')">📄 Publications</div>
+      <div class="cms-nav-item"        data-sec="skills"    onclick="show(this,'skills')">⚡ Skills</div>
+      <div class="cms-nav-item"        data-sec="honours"   onclick="show(this,'honours')">🏅 Honours</div>
     </nav>
 
-    <!-- MAIN -->
     <main class="cms-main">
+
+      <!-- HOW IT WORKS (shown in every section) -->
+      <div class="how-it-works">
+        <p>
+          <strong>How it works:</strong> Edit any field and click <strong>Save</strong>.
+          Changes are stored in your browser and <strong>appear on the site instantly</strong> — just open or refresh any page.
+          To make changes permanent on GitHub Pages: go to <strong>Bio & Details → Export data.js</strong>, download the file, and upload it to your GitHub repo replacing the old <code>assets/js/data.js</code>.
+        </p>
+      </div>
 
       <!-- GENERAL -->
       <div class="cms-section active" id="sec-general">
         <h2>GENERAL SETTINGS</h2>
         <div class="grid2">
-          <div class="form-group"><label>Full Name</label><input id="g-name" placeholder="Md Redwan Islam"></div>
-          <div class="form-group"><label>Job Title</label><input id="g-title" placeholder="Mechanical Engineer & CFD Researcher"></div>
-          <div class="form-group"><label>Tagline (under name)</label><input id="g-tagline" placeholder="MSc · University of Greenwich, UK"></div>
+          <div class="form-group"><label>Full Name</label><input id="g-name"></div>
+          <div class="form-group"><label>Job Title</label><input id="g-title"></div>
+          <div class="form-group"><label>Tagline (under name)</label><input id="g-tagline"></div>
           <div class="form-group"><label>Email</label><input id="g-email" type="email"></div>
           <div class="form-group"><label>LinkedIn URL</label><input id="g-linkedin"></div>
           <div class="form-group"><label>Website URL</label><input id="g-website"></div>
-          <div class="form-group"><label>WhatsApp Number</label><input id="g-whatsapp" placeholder="+8801746332251"></div>
-          <div class="form-group"><label>CV File Path</label><input id="g-cv" placeholder="assets/Redwan_Islam_CV.pdf"><p class="hint">Place your CV PDF in the assets/ folder and enter the path here.</p></div>
+          <div class="form-group"><label>WhatsApp Number</label><input id="g-whatsapp"></div>
+          <div class="form-group">
+            <label>CV File Path</label>
+            <input id="g-cv" placeholder="assets/Redwan_Islam_CV.pdf">
+            <p class="hint">Upload your CV PDF to the assets/ folder in GitHub, then enter the filename here.</p>
+          </div>
         </div>
-        <div style="margin-top:.5rem;"><strong style="font-size:.85rem;color:var(--text-muted);">Hero Stats</strong></div>
-        <div id="stats-list" style="margin-top:1rem;"></div>
-        <button class="btn btn-outline" style="margin-top:.75rem;" onclick="addStat()">+ Add Stat</button>
-        <br><br>
-        <button class="btn btn-primary" onclick="saveGeneral()">Save General Settings</button>
+        <div style="margin:.5rem 0 1rem;font-family:var(--mono);font-size:.7rem;color:var(--text-muted);">HERO STATS</div>
+        <div id="stats-list"></div>
+        <div style="display:flex;gap:.75rem;margin-top:.75rem;flex-wrap:wrap;">
+          <button class="btn btn-outline btn-sm" onclick="addStat()">+ Add Stat</button>
+          <button class="btn btn-primary" onclick="saveGeneral()">💾 Save General</button>
+        </div>
       </div>
 
       <!-- PHOTO -->
       <div class="cms-section" id="sec-photo">
         <h2>PROFILE PHOTO</h2>
-        <p style="font-size:.85rem;color:var(--text-muted);margin-bottom:1.5rem;">
-          Upload a professional headshot. Displayed on the home page. Recommended: square, min 400×400px.
-        </p>
-        <div class="photo-drop" id="drop-zone" onclick="document.getElementById('photo-file').click()" ondragover="event.preventDefault()" ondrop="handleDrop(event)">
-          <img id="photo-preview" class="photo-preview" style="display:none;">
-          <p>Click or drag & drop your photo here</p>
-          <small>JPG / PNG / WEBP · max 5MB</small>
+        <p style="font-size:.85rem;color:var(--text-muted);margin-bottom:1.5rem;">Upload your photo. After downloading, place it at <code style="color:var(--accent);">assets/img/photo.jpg</code> in your GitHub repo.</p>
+        <div class="drop-zone" id="drop-zone" onclick="document.getElementById('photo-file').click()" ondragover="event.preventDefault()" ondrop="handleDrop(event)">
+          <img id="photo-preview">
+          <p>Click or drag & drop your photo</p>
+          <small>JPG / PNG · recommended 400×400px square</small>
         </div>
-        <input type="file" id="photo-file" accept="image/*" style="display:none;" onchange="handlePhotoFile(this)">
+        <input type="file" id="photo-file" accept="image/*" style="display:none" onchange="handlePhoto(this)">
         <br>
-        <p class="hint" style="margin-bottom:1rem;">
-          After uploading: save the image manually as <code style="color:var(--accent);">assets/img/photo.jpg</code> in your portfolio folder,
-          then set the path in General Settings → Photo File Path (add a field there) or update <code>DATA.photo</code> in data.js.
+        <div style="display:flex;gap:.75rem;flex-wrap:wrap;">
+          <button class="btn btn-primary" onclick="downloadPhoto()">⬇ Download photo.jpg</button>
+          <button class="btn btn-outline" onclick="setPhotoPath()">✓ Set photo path in data</button>
+        </div>
+        <p style="margin-top:1rem;font-size:.78rem;color:var(--text-muted);">
+          After downloading: upload to <code style="color:var(--accent);">assets/img/photo.jpg</code> on GitHub,
+          then click <strong>"Set photo path"</strong> above to save the path.
         </p>
-        <p id="photo-status" class="status-ok" style="display:none;"></p>
-        <button class="btn btn-primary" onclick="downloadPhoto()">Download Photo File</button>
+        <p id="photo-msg" style="margin-top:.75rem;font-family:var(--mono);font-size:.72rem;color:var(--green);display:none;"></p>
       </div>
 
-      <!-- ABOUT -->
-      <div class="cms-section" id="sec-about">
-        <h2>ABOUT & BIO</h2>
-        <p style="font-size:.82rem;color:var(--text-muted);margin-bottom:1.5rem;">Three bio paragraphs (first is shown on hero). Contact detail rows below.</p>
-        <div class="form-group"><label>Bio Paragraph 1 (Hero)</label><textarea id="bio-0" rows="4"></textarea></div>
+      <!-- BIO & DETAILS -->
+      <div class="cms-section" id="sec-bio">
+        <h2>BIO & ABOUT DETAILS</h2>
+        <div class="form-group"><label>Bio Paragraph 1 (shown on Hero)</label><textarea id="bio-0" rows="4"></textarea></div>
         <div class="form-group"><label>Bio Paragraph 2</label><textarea id="bio-1" rows="4"></textarea></div>
         <div class="form-group"><label>Bio Paragraph 3</label><textarea id="bio-2" rows="4"></textarea></div>
-        <br>
-        <strong style="font-size:.85rem;color:var(--text-muted);">Contact Detail Rows</strong>
-        <div id="details-list" style="margin-top:1rem;"></div>
-        <button class="btn btn-outline" style="margin-top:.75rem;" onclick="addDetail()">+ Add Row</button>
-        <br><br>
-        <button class="btn btn-primary" onclick="saveAbout()">Save About & Bio</button>
+        <div style="margin:1.25rem 0 .75rem;font-family:var(--mono);font-size:.7rem;color:var(--text-muted);">CONTACT DETAIL ROWS</div>
+        <div id="details-list"></div>
+        <div style="display:flex;gap:.75rem;margin-top:.75rem;flex-wrap:wrap;">
+          <button class="btn btn-outline btn-sm" onclick="addDetail()">+ Add Row</button>
+          <button class="btn btn-primary" onclick="saveBio()">💾 Save Bio & Details</button>
+        </div>
+        <hr style="border-color:var(--border);margin:2rem 0;">
+        <h2>EXPORT — MAKE CHANGES PERMANENT</h2>
+        <p style="font-size:.85rem;color:var(--text-muted);line-height:1.8;margin-bottom:1.25rem;">
+          Download the updated <code style="color:var(--accent);">data.js</code> file and upload it to your GitHub repo
+          at <code style="color:var(--accent);">assets/js/data.js</code> — this makes all your CMS edits permanent even after clearing browser data.
+        </p>
+        <div style="display:flex;gap:.75rem;flex-wrap:wrap;">
+          <button class="btn btn-green" onclick="exportDataJS()">⬇ Export data.js (for GitHub)</button>
+          <button class="btn btn-danger btn-sm" onclick="if(confirm('Reset all edits back to defaults?')){localStorage.removeItem('cms_data');location.reload();}">↺ Reset to defaults</button>
+        </div>
       </div>
 
       <!-- EXPERIENCE -->
-      <div class="cms-section" id="sec-experience">
+      <div class="cms-section" id="sec-exp">
         <h2>WORK EXPERIENCE</h2>
         <div id="exp-list"></div>
-        <button class="btn btn-outline" style="margin-top:1rem;" onclick="addExperience()">+ Add Position</button>
+        <button class="btn btn-outline btn-sm" onclick="addExp()" style="margin-top:.5rem;">+ Add Position</button>
       </div>
 
       <!-- EDUCATION -->
-      <div class="cms-section" id="sec-education">
+      <div class="cms-section" id="sec-edu">
         <h2>EDUCATION</h2>
         <div id="edu-list"></div>
-        <button class="btn btn-outline" style="margin-top:1rem;" onclick="addEducation()">+ Add Entry</button>
+        <button class="btn btn-outline btn-sm" onclick="addEdu()" style="margin-top:.5rem;">+ Add Entry</button>
       </div>
 
       <!-- PROJECTS -->
-      <div class="cms-section" id="sec-projects">
+      <div class="cms-section" id="sec-proj">
         <h2>PROJECTS</h2>
         <div id="proj-list"></div>
-        <button class="btn btn-outline" style="margin-top:1rem;" onclick="addProject()">+ Add Project</button>
+        <button class="btn btn-outline btn-sm" onclick="addProj()" style="margin-top:.5rem;">+ Add Project</button>
       </div>
 
       <!-- PUBLICATIONS -->
-      <div class="cms-section" id="sec-publications">
+      <div class="cms-section" id="sec-pub">
         <h2>PUBLICATIONS & CONFERENCES</h2>
         <div id="pub-list"></div>
-        <button class="btn btn-outline" style="margin-top:1rem;" onclick="addPublication()">+ Add Entry</button>
+        <button class="btn btn-outline btn-sm" onclick="addPub()" style="margin-top:.5rem;">+ Add Entry</button>
       </div>
 
       <!-- SKILLS -->
       <div class="cms-section" id="sec-skills">
         <h2>SKILL GROUPS</h2>
         <div id="skill-list"></div>
-        <button class="btn btn-outline" style="margin-top:1rem;" onclick="addSkillGroup()">+ Add Group</button>
+        <button class="btn btn-outline btn-sm" onclick="addSkillGroup()" style="margin-top:.5rem;">+ Add Group</button>
       </div>
 
       <!-- HONOURS -->
       <div class="cms-section" id="sec-honours">
         <h2>HONOURS & MEMBERSHIPS</h2>
         <div id="honour-list"></div>
-        <button class="btn btn-outline" style="margin-top:1rem;" onclick="addHonour()">+ Add Entry</button>
-        <br><br>
-        <button class="btn btn-primary" onclick="saveHonours()">Save Honours</button>
-      </div>
-
-      <!-- EXPORT -->
-      <div class="cms-section" id="sec-export">
-        <h2>EXPORT — SAVE YOUR CHANGES</h2>
-        <p style="font-size:.87rem;color:var(--text-muted);line-height:1.85;margin-bottom:2rem;">
-          The CMS edits are stored in your browser's localStorage. To make changes permanent on your GitHub Pages site,
-          click <strong style="color:var(--accent);">Export data.js</strong> — this downloads a new <code style="color:var(--accent);">data.js</code> file.
-          Replace the existing <code>assets/js/data.js</code> in your repo with the downloaded file and push to GitHub. Done!
-        </p>
-        <div style="display:flex;gap:1rem;flex-wrap:wrap;">
-          <button class="btn btn-primary" onclick="exportData()">⬇ Export data.js</button>
-          <button class="btn btn-outline" onclick="previewData()">👁 Preview JSON</button>
-          <button class="btn btn-danger" onclick="if(confirm('Reset ALL edits to original data.js defaults?'))resetData()">↺ Reset to Defaults</button>
+        <div style="display:flex;gap:.75rem;margin-top:.75rem;flex-wrap:wrap;">
+          <button class="btn btn-outline btn-sm" onclick="addHonour()">+ Add Entry</button>
+          <button class="btn btn-primary" onclick="saveToast()">💾 Save Honours</button>
         </div>
-        <pre id="json-preview" style="display:none;margin-top:2rem;background:var(--surface2);border:1px solid var(--border);padding:1.5rem;font-size:.72rem;overflow:auto;max-height:400px;color:var(--text-muted);white-space:pre-wrap;"></pre>
       </div>
 
     </main>
   </div>
 </div>
 
-<div class="save-banner" id="save-banner">✓ SAVED</div>
+<div class="toast" id="toast"></div>
 
+<!-- Load data.js for DEFAULT_DATA seed -->
+<script src="assets/js/data.js"></script>
 <script>
-// ── AUTH ──────────────────────────────────────────────
-const PASSWORD = 'redwan2025';
-let state = {};
+// ── AUTH ──────────────────────────────────────────
+const PWD = 'redwan2025';
+let S = {}; // working state
 
 function doLogin() {
-  if(document.getElementById('pwd-input').value === PASSWORD) {
-    document.getElementById('login-screen').style.display='none';
-    document.getElementById('cms-screen').style.display='block';
+  if (document.getElementById('pwd').value === PWD) {
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('cms-screen').style.display  = 'flex';
     initCMS();
   } else {
-    document.getElementById('login-err').textContent='Incorrect password.';
+    document.getElementById('login-err').textContent = 'Incorrect password.';
   }
 }
-
 function doLogout() {
-  document.getElementById('cms-screen').style.display='none';
-  document.getElementById('login-screen').style.display='flex';
-  document.getElementById('pwd-input').value='';
+  document.getElementById('cms-screen').style.display  = 'none';
+  document.getElementById('login-screen').style.display = 'flex';
+  document.getElementById('pwd').value = '';
 }
 
-// ── SECTION NAV ──────────────────────────────────────
-function showSection(id) {
-  document.querySelectorAll('.cms-section').forEach(s=>s.classList.remove('active'));
-  document.querySelectorAll('.cms-nav-item').forEach(n=>n.classList.remove('active'));
-  document.getElementById('sec-'+id).classList.add('active');
-  event.currentTarget.classList.add('active');
+// ── SECTION NAV ───────────────────────────────────
+function show(el, id) {
+  document.querySelectorAll('.cms-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.cms-nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('sec-' + id).classList.add('active');
+  el.classList.add('active');
 }
 
-// ── STATE ─────────────────────────────────────────────
-function loadState() {
-  const saved = localStorage.getItem('cms_data');
-  if(saved) {
-    state = JSON.parse(saved);
-  } else {
-    // Deep copy from DATA (loaded via data.js in parent — we inline defaults here)
-    state = JSON.parse(JSON.stringify(window.DEFAULT_DATA || {}));
+// ── STATE ─────────────────────────────────────────
+function load() {
+  try {
+    const saved = localStorage.getItem('cms_data');
+    S = saved ? JSON.parse(saved) : JSON.parse(JSON.stringify(DEFAULT_DATA));
+  } catch(e) {
+    S = JSON.parse(JSON.stringify(DEFAULT_DATA));
   }
 }
 
-function saveState() {
-  localStorage.setItem('cms_data', JSON.stringify(state));
-  showBanner();
+function save() {
+  localStorage.setItem('cms_data', JSON.stringify(S));
+  // Also update window.DATA so the site pages pick it up without reload
+  window.DATA = S;
+  showToast('✓ Saved — reload any site page to see changes', 'success');
 }
 
-function showBanner() {
-  const b = document.getElementById('save-banner');
-  b.style.display='block';
-  setTimeout(()=>b.style.display='none', 2200);
+function saveToast() { save(); }
+
+function showToast(msg, type='success') {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast ' + type;
+  t.style.display = 'block';
+  setTimeout(() => t.style.display = 'none', 3000);
 }
 
-// ── INIT ─────────────────────────────────────────────
+// ── INIT ──────────────────────────────────────────
 function initCMS() {
-  loadState();
+  load();
   fillGeneral();
-  fillAbout();
+  fillBio();
   renderExpList();
   renderEduList();
   renderProjList();
@@ -343,94 +353,95 @@ function initCMS() {
   renderHonourList();
 }
 
-// ── GENERAL ──────────────────────────────────────────
+// ── GENERAL ───────────────────────────────────────
 function fillGeneral() {
-  document.getElementById('g-name').value     = state.name||'';
-  document.getElementById('g-title').value    = state.title||'';
-  document.getElementById('g-tagline').value  = state.tagline||'';
-  document.getElementById('g-email').value    = state.email||'';
-  document.getElementById('g-linkedin').value = state.linkedin||'';
-  document.getElementById('g-website').value  = state.website||'';
-  document.getElementById('g-whatsapp').value = state.whatsapp||'';
-  document.getElementById('g-cv').value       = state.cv_file||'';
+  document.getElementById('g-name').value     = S.name     || '';
+  document.getElementById('g-title').value    = S.title    || '';
+  document.getElementById('g-tagline').value  = S.tagline  || '';
+  document.getElementById('g-email').value    = S.email    || '';
+  document.getElementById('g-linkedin').value = S.linkedin || '';
+  document.getElementById('g-website').value  = S.website  || '';
+  document.getElementById('g-whatsapp').value = S.whatsapp || '';
+  document.getElementById('g-cv').value       = S.cv_file  || '';
   renderStatsList();
 }
-
 function saveGeneral() {
-  state.name      = document.getElementById('g-name').value;
-  state.title     = document.getElementById('g-title').value;
-  state.tagline   = document.getElementById('g-tagline').value;
-  state.email     = document.getElementById('g-email').value;
-  state.linkedin  = document.getElementById('g-linkedin').value;
-  state.website   = document.getElementById('g-website').value;
-  state.whatsapp  = document.getElementById('g-whatsapp').value;
-  state.cv_file   = document.getElementById('g-cv').value;
-  saveState();
+  S.name     = document.getElementById('g-name').value;
+  S.title    = document.getElementById('g-title').value;
+  S.tagline  = document.getElementById('g-tagline').value;
+  S.email    = document.getElementById('g-email').value;
+  S.linkedin = document.getElementById('g-linkedin').value;
+  S.website  = document.getElementById('g-website').value;
+  S.whatsapp = document.getElementById('g-whatsapp').value;
+  S.cv_file  = document.getElementById('g-cv').value;
+  save();
 }
 
 function renderStatsList() {
-  const c = document.getElementById('stats-list');
-  c.innerHTML = (state.stats||[]).map((s,i)=>`
-    <div style="display:grid;grid-template-columns:100px 1fr auto;gap:.75rem;align-items:center;margin-bottom:.5rem;">
-      <input class="form-group input" style="background:var(--surface2);border:1px solid var(--border-hi);color:var(--text);padding:.5rem .75rem;font-family:var(--sans);font-size:.85rem;" placeholder="5+" value="${s.num}" onchange="state.stats[${i}].num=this.value">
-      <input class="form-group input" style="background:var(--surface2);border:1px solid var(--border-hi);color:var(--text);padding:.5rem .75rem;font-family:var(--sans);font-size:.85rem;" placeholder="Years Experience" value="${s.label}" onchange="state.stats[${i}].label=this.value">
-      <button class="btn btn-danger" style="padding:.4rem .8rem;font-size:.65rem;" onclick="state.stats.splice(${i},1);renderStatsList()">✕</button>
+  document.getElementById('stats-list').innerHTML = (S.stats||[]).map((s,i) => `
+    <div style="display:grid;grid-template-columns:90px 1fr auto;gap:.5rem;align-items:center;margin-bottom:.4rem;">
+      <input style="background:var(--surface2);border:1px solid var(--border-hi);color:var(--text);padding:.4rem .6rem;font-size:.85rem;font-family:var(--sans);" value="${s.num}" placeholder="5+" onchange="S.stats[${i}].num=this.value">
+      <input style="background:var(--surface2);border:1px solid var(--border-hi);color:var(--text);padding:.4rem .6rem;font-size:.85rem;font-family:var(--sans);" value="${s.label}" placeholder="Years Experience" onchange="S.stats[${i}].label=this.value">
+      <button class="btn btn-danger btn-sm" onclick="S.stats.splice(${i},1);renderStatsList()">✕</button>
     </div>`).join('');
 }
+function addStat() { S.stats = S.stats||[]; S.stats.push({num:'',label:''}); renderStatsList(); }
 
-function addStat() {
-  if(!state.stats) state.stats=[];
-  state.stats.push({num:'',label:''});
-  renderStatsList();
-}
-
-// ── ABOUT ─────────────────────────────────────────────
-function fillAbout() {
-  (state.bio||[]).forEach((b,i)=>{
-    const el=document.getElementById('bio-'+i);
-    if(el) el.value=b;
-  });
+// ── BIO & DETAILS ─────────────────────────────────
+function fillBio() {
+  (S.bio||[]).forEach((b,i) => { const el = document.getElementById('bio-'+i); if(el) el.value=b; });
   renderDetailsList();
 }
-
-function saveAbout() {
-  state.bio = [0,1,2].map(i=>document.getElementById('bio-'+i).value);
-  saveState();
-  renderDetailsList();
+function saveBio() {
+  S.bio = [0,1,2].map(i => document.getElementById('bio-'+i).value.trim());
+  save();
 }
-
 function renderDetailsList() {
-  const c=document.getElementById('details-list');
-  c.innerHTML=(state.details||[]).map((d,i)=>`
-    <div style="display:grid;grid-template-columns:120px 1fr 1fr auto;gap:.75rem;align-items:center;margin-bottom:.5rem;">
-      <input style="background:var(--surface2);border:1px solid var(--border-hi);color:var(--text);padding:.5rem .75rem;font-size:.82rem;font-family:var(--sans);" value="${d.key}" placeholder="Key" onchange="state.details[${i}].key=this.value">
-      <input style="background:var(--surface2);border:1px solid var(--border-hi);color:var(--text);padding:.5rem .75rem;font-size:.82rem;font-family:var(--sans);" value="${d.val}" placeholder="Display value" onchange="state.details[${i}].val=this.value">
-      <input style="background:var(--surface2);border:1px solid var(--border-hi);color:var(--text);padding:.5rem .75rem;font-size:.82rem;font-family:var(--sans);" value="${d.link||''}" placeholder="Link URL (optional)" onchange="state.details[${i}].link=this.value">
-      <button class="btn btn-danger" style="padding:.4rem .8rem;font-size:.65rem;" onclick="state.details.splice(${i},1);renderDetailsList()">✕</button>
+  document.getElementById('details-list').innerHTML = (S.details||[]).map((d,i) => `
+    <div style="display:grid;grid-template-columns:110px 1fr 1fr auto;gap:.4rem;margin-bottom:.4rem;align-items:center;">
+      <input style="background:var(--surface2);border:1px solid var(--border-hi);color:var(--text);padding:.4rem .6rem;font-size:.8rem;" value="${d.key}" placeholder="Key" onchange="S.details[${i}].key=this.value">
+      <input style="background:var(--surface2);border:1px solid var(--border-hi);color:var(--text);padding:.4rem .6rem;font-size:.8rem;" value="${d.val}" placeholder="Value" onchange="S.details[${i}].val=this.value">
+      <input style="background:var(--surface2);border:1px solid var(--border-hi);color:var(--text);padding:.4rem .6rem;font-size:.8rem;" value="${d.link||''}" placeholder="Link URL (optional)" onchange="S.details[${i}].link=this.value">
+      <button class="btn btn-danger btn-sm" onclick="S.details.splice(${i},1);renderDetailsList()">✕</button>
     </div>`).join('');
 }
+function addDetail() { S.details=S.details||[]; S.details.push({key:'',val:'',link:''}); renderDetailsList(); }
 
-function addDetail() {
-  if(!state.details) state.details=[];
-  state.details.push({key:'',val:'',link:''});
-  renderDetailsList();
+// ── PHOTO ─────────────────────────────────────────
+let photoBlobURL = null, photoFile = null;
+function handlePhoto(input) { if(input.files&&input.files[0]) previewPhoto(input.files[0]); }
+function handleDrop(e) { e.preventDefault(); if(e.dataTransfer.files&&e.dataTransfer.files[0]) previewPhoto(e.dataTransfer.files[0]); }
+function previewPhoto(file) {
+  photoFile = file;
+  photoBlobURL = URL.createObjectURL(file);
+  const img = document.getElementById('photo-preview');
+  img.src = photoBlobURL; img.style.display = 'block';
+}
+function downloadPhoto() {
+  if (!photoFile) { showToast('Please select a photo first','error'); return; }
+  const a = document.createElement('a'); a.href = photoBlobURL;
+  a.download = 'photo.jpg'; a.click();
+  showToast('⬇ photo.jpg downloaded — upload to assets/img/ on GitHub', 'success');
+}
+function setPhotoPath() {
+  S.photo = 'assets/img/photo.jpg';
+  save();
+  document.getElementById('photo-msg').style.display = 'block';
+  document.getElementById('photo-msg').textContent = '✓ Photo path set to assets/img/photo.jpg';
 }
 
-// ── EXPERIENCE ────────────────────────────────────────
+// ── EXPERIENCE ────────────────────────────────────
 function renderExpList() {
-  document.getElementById('exp-list').innerHTML=(state.experience||[]).map((e,i)=>`
+  document.getElementById('exp-list').innerHTML = (S.experience||[]).map((e,i) => `
     <div class="item-card">
       <div class="item-card-header">
-        <div>
-          <div class="item-card-title">${e.role||'(no role)'}</div>
-          <div class="item-card-sub">${e.company||''} · ${e.period||''}</div>
-        </div>
+        <div><div class="item-title">${e.role||'(no role)'}</div><div class="item-sub">${e.company||''} · ${e.period||''}</div></div>
         <div class="item-btns">
-          <button class="btn btn-outline" style="font-size:.65rem;padding:.4rem .8rem;" onclick="editExp(${i})">Edit</button>
-          <button class="btn btn-danger" style="font-size:.65rem;padding:.4rem .8rem;" onclick="delItem('experience',${i})">✕</button>
+          <button class="btn btn-outline btn-sm" onclick="toggleForm('ef-${i}')">Edit</button>
+          <button class="btn btn-danger btn-sm" onclick="delFrom('experience',${i})">✕</button>
         </div>
       </div>
-      <div id="exp-form-${i}" style="display:none;margin-top:1.25rem;border-top:1px solid var(--border);padding-top:1.25rem;">
+      <div class="item-form" id="ef-${i}">
         <div class="grid2">
           <div class="form-group"><label>Period</label><input id="ef-period-${i}" value="${e.period||''}"></div>
           <div class="form-group"><label>Role</label><input id="ef-role-${i}" value="${e.role||''}"></div>
@@ -439,237 +450,184 @@ function renderExpList() {
         </div>
         <div class="form-group"><label>Description</label><textarea id="ef-desc-${i}" rows="4">${e.desc||''}</textarea></div>
         <div class="form-group"><label>Sub-projects (one per line)</label><textarea id="ef-proj-${i}" rows="4">${(e.projects||[]).join('\n')}</textarea></div>
-        <button class="btn btn-primary" style="margin-top:.5rem;" onclick="saveExp(${i})">Save</button>
+        <button class="btn btn-primary btn-sm" onclick="saveExp(${i})">💾 Save</button>
       </div>
     </div>`).join('');
 }
-
-function editExp(i) {
-  const f=document.getElementById('exp-form-'+i);
-  f.style.display = f.style.display==='none'?'block':'none';
-}
-
 function saveExp(i) {
-  const e=state.experience[i];
-  e.period  = document.getElementById('ef-period-'+i).value;
-  e.role    = document.getElementById('ef-role-'+i).value;
-  e.company = document.getElementById('ef-company-'+i).value;
-  e.desc    = document.getElementById('ef-desc-'+i).value;
-  e.tags    = document.getElementById('ef-tags-'+i).value.split(',').map(t=>t.trim()).filter(Boolean);
-  const proj = document.getElementById('ef-proj-'+i).value.trim();
-  e.projects = proj ? proj.split('\n').filter(Boolean) : undefined;
-  saveState(); renderExpList();
+  const e = S.experience[i];
+  e.period  = v('ef-period-'+i); e.role    = v('ef-role-'+i);
+  e.company = v('ef-company-'+i); e.desc   = v('ef-desc-'+i);
+  e.tags    = v('ef-tags-'+i).split(',').map(t=>t.trim()).filter(Boolean);
+  const p   = v('ef-proj-'+i).trim();
+  e.projects = p ? p.split('\n').filter(Boolean) : undefined;
+  save(); renderExpList();
 }
+function addExp() { S.experience=S.experience||[]; S.experience.unshift({period:'',role:'New Role',company:'',desc:'',tags:[]}); save(); renderExpList(); }
 
-function addExperience() {
-  if(!state.experience) state.experience=[];
-  state.experience.unshift({period:'',role:'New Role',company:'',desc:'',tags:[]});
-  saveState(); renderExpList();
-}
-
-// ── EDUCATION ─────────────────────────────────────────
+// ── EDUCATION ─────────────────────────────────────
 function renderEduList() {
-  document.getElementById('edu-list').innerHTML=(state.education||[]).map((e,i)=>`
+  document.getElementById('edu-list').innerHTML = (S.education||[]).map((e,i) => `
     <div class="item-card">
       <div class="item-card-header">
-        <div>
-          <div class="item-card-title">${e.degree||'(no degree)'}</div>
-          <div class="item-card-sub">${e.institution||''} · ${e.period||''}</div>
-        </div>
+        <div><div class="item-title">${e.degree||'(no degree)'}</div><div class="item-sub">${e.institution||''} · ${e.period||''}</div></div>
         <div class="item-btns">
-          <button class="btn btn-outline" style="font-size:.65rem;padding:.4rem .8rem;" onclick="editEdu(${i})">Edit</button>
-          <button class="btn btn-danger" style="font-size:.65rem;padding:.4rem .8rem;" onclick="delItem('education',${i})">✕</button>
+          <button class="btn btn-outline btn-sm" onclick="toggleForm('eduf-${i}')">Edit</button>
+          <button class="btn btn-danger btn-sm" onclick="delFrom('education',${i})">✕</button>
         </div>
       </div>
-      <div id="edu-form-${i}" style="display:none;margin-top:1.25rem;border-top:1px solid var(--border);padding-top:1.25rem;">
+      <div class="item-form" id="eduf-${i}">
         <div class="grid2">
           <div class="form-group"><label>Period</label><input id="edu-period-${i}" value="${e.period||''}"></div>
           <div class="form-group"><label>Degree</label><input id="edu-degree-${i}" value="${e.degree||''}"></div>
           <div class="form-group"><label>Institution</label><input id="edu-inst-${i}" value="${e.institution||''}"></div>
         </div>
         <div class="form-group"><label>Details</label><textarea id="edu-detail-${i}" rows="5">${e.detail||''}</textarea></div>
-        <button class="btn btn-primary" style="margin-top:.5rem;" onclick="saveEdu(${i})">Save</button>
+        <button class="btn btn-primary btn-sm" onclick="saveEdu(${i})">💾 Save</button>
       </div>
     </div>`).join('');
 }
-
-function editEdu(i){const f=document.getElementById('edu-form-'+i);f.style.display=f.style.display==='none'?'block':'none';}
-function saveEdu(i){
-  const e=state.education[i];
-  e.period=document.getElementById('edu-period-'+i).value;
-  e.degree=document.getElementById('edu-degree-'+i).value;
-  e.institution=document.getElementById('edu-inst-'+i).value;
-  e.detail=document.getElementById('edu-detail-'+i).value;
-  saveState();renderEduList();
+function saveEdu(i) {
+  S.education[i] = { period:v('edu-period-'+i), degree:v('edu-degree-'+i), institution:v('edu-inst-'+i), detail:v('edu-detail-'+i) };
+  save(); renderEduList();
 }
-function addEducation(){if(!state.education)state.education=[];state.education.unshift({period:'',degree:'New Degree',institution:'',detail:''});saveState();renderEduList();}
+function addEdu() { S.education=S.education||[]; S.education.unshift({period:'',degree:'New Degree',institution:'',detail:''}); save(); renderEduList(); }
 
-// ── PROJECTS ──────────────────────────────────────────
+// ── PROJECTS ──────────────────────────────────────
 function renderProjList() {
-  document.getElementById('proj-list').innerHTML=(state.projects||[]).map((p,i)=>`
+  document.getElementById('proj-list').innerHTML = (S.projects||[]).map((p,i) => `
     <div class="item-card">
       <div class="item-card-header">
-        <div>
-          <div class="item-card-title">${p.title||'(no title)'}</div>
-          <div class="item-card-sub">${p.type||''}</div>
-        </div>
+        <div><div class="item-title">${p.title||'(no title)'}</div><div class="item-sub">${p.type||''}</div></div>
         <div class="item-btns">
-          <button class="btn btn-outline" style="font-size:.65rem;padding:.4rem .8rem;" onclick="editProj(${i})">Edit</button>
-          <button class="btn btn-danger" style="font-size:.65rem;padding:.4rem .8rem;" onclick="delItem('projects',${i})">✕</button>
+          <button class="btn btn-outline btn-sm" onclick="toggleForm('pf-${i}')">Edit</button>
+          <button class="btn btn-danger btn-sm" onclick="delFrom('projects',${i})">✕</button>
         </div>
       </div>
-      <div id="proj-form-${i}" style="display:none;margin-top:1.25rem;border-top:1px solid var(--border);padding-top:1.25rem;">
+      <div class="item-form" id="pf-${i}">
         <div class="grid2">
-          <div class="form-group"><label>Type</label><input id="pf-type-${i}" value="${p.type||''}"></div>
+          <div class="form-group"><label>Type / Category</label><input id="pf-type-${i}" value="${p.type||''}"></div>
           <div class="form-group"><label>Title</label><input id="pf-title-${i}" value="${p.title||''}"></div>
-          <div class="form-group"><label>Tags (comma separated)</label><input id="pf-tags-${i}" value="${(p.tags||[]).join(', ')}"></div>
           <div class="form-group"><label>Outcome</label><input id="pf-outcome-${i}" value="${p.outcome||''}"></div>
+          <div class="form-group"><label>Tags (comma separated)</label><input id="pf-tags-${i}" value="${(p.tags||[]).join(', ')}"></div>
         </div>
         <div class="form-group"><label>Description</label><textarea id="pf-desc-${i}" rows="5">${p.desc||''}</textarea></div>
-        <button class="btn btn-primary" style="margin-top:.5rem;" onclick="saveProj(${i})">Save</button>
+        <button class="btn btn-primary btn-sm" onclick="saveProj(${i})">💾 Save</button>
       </div>
     </div>`).join('');
 }
-
-function editProj(i){const f=document.getElementById('proj-form-'+i);f.style.display=f.style.display==='none'?'block':'none';}
-function saveProj(i){
-  const p=state.projects[i];
-  p.type=document.getElementById('pf-type-'+i).value;
-  p.title=document.getElementById('pf-title-'+i).value;
-  p.desc=document.getElementById('pf-desc-'+i).value;
-  p.outcome=document.getElementById('pf-outcome-'+i).value;
-  p.tags=document.getElementById('pf-tags-'+i).value.split(',').map(t=>t.trim()).filter(Boolean);
-  saveState();renderProjList();
+function saveProj(i) {
+  S.projects[i] = { type:v('pf-type-'+i), title:v('pf-title-'+i), desc:v('pf-desc-'+i), outcome:v('pf-outcome-'+i), tags:v('pf-tags-'+i).split(',').map(t=>t.trim()).filter(Boolean) };
+  save(); renderProjList();
 }
-function addProject(){if(!state.projects)state.projects=[];state.projects.unshift({type:'',title:'New Project',desc:'',outcome:'',tags:[]});saveState();renderProjList();}
+function addProj() { S.projects=S.projects||[]; S.projects.unshift({type:'',title:'New Project',desc:'',outcome:'',tags:[]}); save(); renderProjList(); }
 
-// ── PUBLICATIONS ──────────────────────────────────────
-function renderPubList(){
-  document.getElementById('pub-list').innerHTML=(state.publications||[]).map((p,i)=>`
+// ── PUBLICATIONS ──────────────────────────────────
+function renderPubList() {
+  document.getElementById('pub-list').innerHTML = (S.publications||[]).map((p,i) => `
     <div class="item-card">
       <div class="item-card-header">
-        <div>
-          <div class="item-card-title">${p.title||'(no title)'}</div>
-          <div class="item-card-sub">${p.type||''} · ${p.venue||''}</div>
-        </div>
+        <div><div class="item-title">${p.title||'(no title)'}</div><div class="item-sub">${p.type||''} · ${p.venue||''}</div></div>
         <div class="item-btns">
-          <button class="btn btn-outline" style="font-size:.65rem;padding:.4rem .8rem;" onclick="editPub(${i})">Edit</button>
-          <button class="btn btn-danger" style="font-size:.65rem;padding:.4rem .8rem;" onclick="delItem('publications',${i})">✕</button>
+          <button class="btn btn-outline btn-sm" onclick="toggleForm('pubf-${i}')">Edit</button>
+          <button class="btn btn-danger btn-sm" onclick="delFrom('publications',${i})">✕</button>
         </div>
       </div>
-      <div id="pub-form-${i}" style="display:none;margin-top:1.25rem;border-top:1px solid var(--border);padding-top:1.25rem;">
+      <div class="item-form" id="pubf-${i}">
         <div class="grid2">
           <div class="form-group"><label>Type</label><input id="pubf-type-${i}" value="${p.type||''}"></div>
           <div class="form-group"><label>Authors</label><input id="pubf-authors-${i}" value="${p.authors||''}"></div>
           <div class="form-group"><label>Venue / Conference</label><input id="pubf-venue-${i}" value="${p.venue||''}"></div>
-          <div class="form-group"><label>DOI / Link</label><input id="pubf-doi-${i}" value="${p.doi||''}"></div>
+          <div class="form-group"><label>DOI / Link URL</label><input id="pubf-doi-${i}" value="${p.doi||''}"></div>
         </div>
         <div class="form-group"><label>Full Title</label><textarea id="pubf-title-${i}" rows="3">${p.title||''}</textarea></div>
-        <button class="btn btn-primary" style="margin-top:.5rem;" onclick="savePub(${i})">Save</button>
+        <button class="btn btn-primary btn-sm" onclick="savePub(${i})">💾 Save</button>
       </div>
     </div>`).join('');
 }
-
-function editPub(i){const f=document.getElementById('pub-form-'+i);f.style.display=f.style.display==='none'?'block':'none';}
-function savePub(i){
-  const p=state.publications[i];
-  p.type=document.getElementById('pubf-type-'+i).value;
-  p.title=document.getElementById('pubf-title-'+i).value;
-  p.venue=document.getElementById('pubf-venue-'+i).value;
-  p.authors=document.getElementById('pubf-authors-'+i).value;
-  p.doi=document.getElementById('pubf-doi-'+i).value;
-  saveState();renderPubList();
+function savePub(i) {
+  S.publications[i] = { type:v('pubf-type-'+i), title:v('pubf-title-'+i), venue:v('pubf-venue-'+i), authors:v('pubf-authors-'+i), doi:v('pubf-doi-'+i) };
+  save(); renderPubList();
 }
-function addPublication(){if(!state.publications)state.publications=[];state.publications.push({type:'Conference Paper',title:'',venue:'',authors:'',doi:''});saveState();renderPubList();}
+function addPub() { S.publications=S.publications||[]; S.publications.push({type:'Conference Paper',title:'',venue:'',authors:'',doi:''}); save(); renderPubList(); }
 
-// ── SKILLS ────────────────────────────────────────────
-function renderSkillList(){
-  document.getElementById('skill-list').innerHTML=(state.skillGroups||[]).map((g,gi)=>`
-    <div class="item-card" style="margin-bottom:1rem;">
+// ── SKILLS ────────────────────────────────────────
+function renderSkillList() {
+  document.getElementById('skill-list').innerHTML = (S.skillGroups||[]).map((g,gi) => `
+    <div class="item-card">
       <div class="item-card-header">
-        <div class="item-card-title">${g.title}</div>
+        <div class="item-title">${g.title}</div>
         <div class="item-btns">
-          <button class="btn btn-outline" style="font-size:.65rem;padding:.4rem .8rem;" onclick="editSkillGroup(${gi})">Edit</button>
-          <button class="btn btn-danger" style="font-size:.65rem;padding:.4rem .8rem;" onclick="delItem('skillGroups',${gi})">✕</button>
+          <button class="btn btn-outline btn-sm" onclick="toggleForm('sgf-${gi}')">Edit</button>
+          <button class="btn btn-danger btn-sm" onclick="delFrom('skillGroups',${gi})">✕</button>
         </div>
       </div>
-      <div id="sg-form-${gi}" style="display:none;margin-top:1rem;border-top:1px solid var(--border);padding-top:1rem;">
+      <div class="item-form" id="sgf-${gi}">
         <div class="form-group"><label>Group Title</label><input id="sg-title-${gi}" value="${g.title}"></div>
+        <div style="margin-bottom:.5rem;font-family:var(--mono);font-size:.62rem;color:var(--accent);">SKILLS (name · % proficiency, leave % blank for no bar)</div>
         <div id="sg-skills-${gi}">
           ${(g.skills||[]).map((s,si)=>`
-            <div style="display:grid;grid-template-columns:1fr 80px auto;gap:.5rem;margin-bottom:.4rem;align-items:center;">
-              <input style="background:var(--surface2);border:1px solid var(--border-hi);color:var(--text);padding:.4rem .7rem;font-size:.82rem;" value="${s.name}" onchange="state.skillGroups[${gi}].skills[${si}].name=this.value">
-              <input style="background:var(--surface2);border:1px solid var(--border-hi);color:var(--text);padding:.4rem .7rem;font-size:.82rem;" type="number" min="0" max="100" placeholder="%" value="${s.pct!=null?s.pct:''}" onchange="state.skillGroups[${gi}].skills[${si}].pct=this.value?+this.value:null">
-              <button class="btn btn-danger" style="padding:.35rem .6rem;font-size:.6rem;" onclick="state.skillGroups[${gi}].skills.splice(${si},1);renderSkillList()">✕</button>
+            <div style="display:grid;grid-template-columns:1fr 70px auto;gap:.4rem;margin-bottom:.35rem;">
+              <input style="background:var(--surface2);border:1px solid var(--border-hi);color:var(--text);padding:.35rem .6rem;font-size:.82rem;" value="${s.name}" onchange="S.skillGroups[${gi}].skills[${si}].name=this.value">
+              <input style="background:var(--surface2);border:1px solid var(--border-hi);color:var(--text);padding:.35rem .6rem;font-size:.82rem;" type="number" min="0" max="100" placeholder="%" value="${s.pct!=null?s.pct:''}" onchange="S.skillGroups[${gi}].skills[${si}].pct=this.value===''?null:+this.value">
+              <button class="btn btn-danger btn-sm" onclick="S.skillGroups[${gi}].skills.splice(${si},1);renderSkillList()">✕</button>
             </div>`).join('')}
         </div>
-        <button class="btn btn-outline" style="margin-top:.5rem;font-size:.65rem;" onclick="state.skillGroups[${gi}].skills.push({name:'',pct:null});renderSkillList()">+ Add Skill</button>
-        <br>
-        <button class="btn btn-primary" style="margin-top:.75rem;" onclick="saveSkillGroup(${gi})">Save Group</button>
+        <div style="display:flex;gap:.5rem;margin-top:.5rem;">
+          <button class="btn btn-outline btn-sm" onclick="S.skillGroups[${gi}].skills.push({name:'',pct:null});renderSkillList()">+ Skill</button>
+          <button class="btn btn-primary btn-sm" onclick="S.skillGroups[${gi}].title=v('sg-title-${gi}');save();renderSkillList()">💾 Save Group</button>
+        </div>
       </div>
     </div>`).join('');
 }
+function addSkillGroup() { S.skillGroups=S.skillGroups||[]; S.skillGroups.push({title:'New Group',skills:[]}); save(); renderSkillList(); }
 
-function editSkillGroup(i){const f=document.getElementById('sg-form-'+i);f.style.display=f.style.display==='none'?'block':'none';}
-function saveSkillGroup(i){state.skillGroups[i].title=document.getElementById('sg-title-'+i).value;saveState();renderSkillList();}
-function addSkillGroup(){if(!state.skillGroups)state.skillGroups=[];state.skillGroups.push({title:'New Group',skills:[]});saveState();renderSkillList();}
-
-// ── HONOURS ───────────────────────────────────────────
-function renderHonourList(){
-  document.getElementById('honour-list').innerHTML=(state.honours||[]).map((h,i)=>`
-    <div style="display:grid;grid-template-columns:50px 1fr auto;gap:.75rem;align-items:center;margin-bottom:.5rem;background:var(--surface);border:1px solid var(--border);padding:1rem;">
-      <input style="background:var(--surface2);border:1px solid var(--border-hi);color:var(--text);padding:.4rem;text-align:center;font-size:1rem;" value="${h.icon}" onchange="state.honours[${i}].icon=this.value">
-      <input style="background:var(--surface2);border:1px solid var(--border-hi);color:var(--text);padding:.4rem .7rem;font-size:.82rem;font-family:var(--sans);" value="${h.text.replace(/<[^>]+>/g,'')}" onchange="state.honours[${i}].text=this.value">
-      <button class="btn btn-danger" style="padding:.4rem .7rem;font-size:.6rem;" onclick="state.honours.splice(${i},1);renderHonourList()">✕</button>
+// ── HONOURS ───────────────────────────────────────
+function renderHonourList() {
+  document.getElementById('honour-list').innerHTML = (S.honours||[]).map((h,i) => `
+    <div style="display:grid;grid-template-columns:44px 1fr auto;gap:.5rem;align-items:center;margin-bottom:.5rem;background:var(--surface);border:1px solid var(--border);padding:.85rem;">
+      <input style="background:var(--surface2);border:1px solid var(--border-hi);color:var(--text);padding:.35rem;text-align:center;font-size:1rem;" value="${h.icon}" onchange="S.honours[${i}].icon=this.value">
+      <input style="background:var(--surface2);border:1px solid var(--border-hi);color:var(--text);padding:.35rem .6rem;font-size:.82rem;font-family:var(--sans);" value="${h.text.replace(/<[^>]+>/g,'')}" onchange="S.honours[${i}].text=this.value">
+      <button class="btn btn-danger btn-sm" onclick="S.honours.splice(${i},1);renderHonourList()">✕</button>
     </div>`).join('');
 }
+function addHonour() { S.honours=S.honours||[]; S.honours.push({icon:'◆',text:''}); renderHonourList(); }
 
-function saveHonours(){saveState();}
-function addHonour(){if(!state.honours)state.honours=[];state.honours.push({icon:'◆',text:''});saveState();renderHonourList();}
+// ── EXPORT data.js ────────────────────────────────
+function exportDataJS() {
+  // Build a clean data.js with the current state baked in as DEFAULT_DATA
+  const js = `// ============================================================
+// PORTFOLIO DATA — exported from CMS on ${new Date().toLocaleDateString()}
+// ============================================================
+const DEFAULT_DATA = ${JSON.stringify(S, null, 2)};
 
-// ── GENERIC DELETE ─────────────────────────────────────
-function delItem(key,i){if(confirm('Delete this entry?')){state[key].splice(i,1);saveState();if(key==='experience')renderExpList();else if(key==='education')renderEduList();else if(key==='projects')renderProjList();else if(key==='publications')renderPubList();else if(key==='skillGroups')renderSkillList();}}
-
-// ── PHOTO ──────────────────────────────────────────────
-let photoBlob=null;
-function handlePhotoFile(input){if(input.files&&input.files[0])previewImg(input.files[0]);}
-function handleDrop(e){e.preventDefault();if(e.dataTransfer.files&&e.dataTransfer.files[0])previewImg(e.dataTransfer.files[0]);}
-function previewImg(file){
-  photoBlob=file;
-  const url=URL.createObjectURL(file);
-  const img=document.getElementById('photo-preview');
-  img.src=url; img.style.display='block';
-  document.getElementById('photo-status').style.display='block';
-  document.getElementById('photo-status').textContent='✓ Photo loaded — click Download to save.';
-}
-function downloadPhoto(){
-  if(!photoBlob){alert('No photo selected.');return;}
-  const a=document.createElement('a');a.href=URL.createObjectURL(photoBlob);a.download='photo.jpg';a.click();
-}
-
-// ── EXPORT ─────────────────────────────────────────────
-function exportData(){
-  const js='// ============================================================\n// PORTFOLIO DATA — auto-exported from CMS\n// ============================================================\nconst DATA = '+JSON.stringify(state,null,2)+';\n';
-  const blob=new Blob([js],{type:'text/javascript'});
-  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='data.js';a.click();
+// Live data: use localStorage if available, else use above defaults
+(function() {
+  try {
+    const saved = localStorage.getItem('cms_data');
+    if (saved) { window.DATA = JSON.parse(saved); }
+    else { window.DATA = JSON.parse(JSON.stringify(DEFAULT_DATA)); localStorage.setItem('cms_data', JSON.stringify(DEFAULT_DATA)); }
+  } catch(e) { window.DATA = JSON.parse(JSON.stringify(DEFAULT_DATA)); }
+})();
+`;
+  const blob = new Blob([js], {type:'text/javascript'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+  a.download = 'data.js'; a.click();
+  showToast('⬇ data.js downloaded — upload to assets/js/ on GitHub', 'success');
 }
 
-function previewData(){
-  const el=document.getElementById('json-preview');
-  el.style.display=el.style.display==='none'?'block':'none';
-  el.textContent=JSON.stringify(state,null,2);
+// ── HELPERS ───────────────────────────────────────
+function v(id) { return (document.getElementById(id)||{}).value || ''; }
+function toggleForm(id) { document.getElementById(id).classList.toggle('open'); }
+function delFrom(key, i) {
+  if (!confirm('Delete this entry?')) return;
+  S[key].splice(i, 1); save();
+  if (key==='experience')   renderExpList();
+  else if (key==='education')    renderEduList();
+  else if (key==='projects')     renderProjList();
+  else if (key==='publications') renderPubList();
+  else if (key==='skillGroups')  renderSkillList();
 }
-
-function resetData(){localStorage.removeItem('cms_data');location.reload();}
-</script>
-
-<!-- Load default data to seed state if no localStorage -->
-<script src="assets/js/data.js"></script>
-<script>
-  // Seed localStorage from data.js if empty
-  if(!localStorage.getItem('cms_data') && typeof DATA!=='undefined') {
-    localStorage.setItem('cms_data', JSON.stringify(DATA));
-  }
 </script>
 </body>
 </html>
