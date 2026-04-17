@@ -6,7 +6,7 @@ const DEFAULT_DATA = {
   email:"redwanislam98@gmail.com",
   linkedin:"https://linkedin.com/in/redwanislam98",
   website:"https://redwanislam.com",
-  whatsapp:"+8801746332251",
+  whatsapp:"+447925949252",
   cv_file:"assets/Redwan_Islam_CV.pdf",
   photo:"",
   bio:[
@@ -25,8 +25,8 @@ const DEFAULT_DATA = {
     {key:"Interests",   val:"Guitar · Drums · Chess · Table Tennis · Football"}
   ],
   stats:[
-    {num:"5+",label:"Years Experience"},
-    {num:"2",  label:"Publications"},
+    {num:"4+",label:"Years Experience"},
+    {num:"5",  label:"Publications"},
     {num:"6+", label:"Projects"},
     {num:"3",  label:"Countries"}
   ],
