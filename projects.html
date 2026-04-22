@@ -1,42 +1,565 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Projects | CFD Simulation & Mechanical Engineering | Md Redwan Islam</title>
-<meta name="description" content="Engineering projects by Md Redwan Islam. CFD simulation of liquid sloshing in road tanker trucks using ANSYS Fluent. Wind tunnel design. HVAC system design. Lean manufacturing and Industry 4.0 projects.">
-<meta name="keywords" content="Md Redwan Islam, Redwan Islam mechanical engineer, CFD engineer UK, ANSYS Fluent simulation, HVAC engineer, lean manufacturing engineer, SolidWorks engineer, graduate mechanical engineer, fluid mechanics researcher, VOF CFD simulation">
-<meta name="author" content="Md Redwan Islam">
-<meta name="robots" content="index, follow">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Projects | Md Redwan Islam — CFD, CAD, Manufacturing Engineering</title>
+<meta name="description" content="Engineering projects by Md Redwan Islam: CFD simulation of liquid sloshing (ANSYS Fluent), wind tunnel design, topology optimisation, SolidWorks CAD models, HVAC design, lean manufacturing.">
+<meta name="robots" content="index,follow">
 <link rel="canonical" href="https://redwanislam.com/projects.html">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://redwanislam.com/projects.html">
-<meta property="og:title" content="Projects | CFD Simulation & Mechanical Engineering | Md Redwan Islam">
-<meta property="og:description" content="Engineering projects by Md Redwan Islam. CFD simulation of liquid sloshing in road tanker trucks using ANSYS Fluent. Wind tunnel design. HVAC system design. Lean manufacturing and Industry 4.0 projects.">
-<meta property="og:image" content="https://redwanislam.com/assets/img/photo.jpg">
-<meta property="og:site_name" content="Redwan Islam — Mechanical Engineer">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Projects | CFD Simulation & Mechanical Engineering | Md Redwan Islam">
-<meta name="twitter:description" content="Engineering projects by Md Redwan Islam. CFD simulation of liquid sloshing in road tanker trucks using ANSYS Fluent. Wind tunnel design. HVAC system design. Lean manufacturing and Industry 4.0 projects.">
-<meta name="twitter:image" content="https://redwanislam.com/assets/img/photo.jpg">
 <link rel="stylesheet" href="assets/css/style.css">
+<style>
+/* ── PROJECT PAGE EXTRAS ── */
+
+/* FILTER BAR */
+.filter-bar {
+  display:flex; gap:.6rem; flex-wrap:wrap; margin-bottom:3rem;
+}
+.filter-btn {
+  font-family:var(--mono); font-size:.65rem; letter-spacing:.08em;
+  text-transform:uppercase; padding:.4rem 1rem;
+  border:1px solid var(--bdr2); color:var(--txt3);
+  background:transparent; cursor:pointer; transition:all .2s;
+}
+.filter-btn:hover,.filter-btn.active {
+  border-color:var(--cyan); color:var(--cyan); background:rgba(0,229,255,.06);
+}
+
+/* ── FEATURED CARD — AMG RED THEME ── */
+.proj-featured {
+  grid-column:1/-1;
+  background:#0a0a0a;
+  border:1px solid #1a1a1a;
+  border-left:4px solid #E8002D;
+  padding:2.5rem;
+  position:relative; overflow:hidden;
+  transition:box-shadow .3s;
+  display:grid; grid-template-columns:1fr 1fr; gap:2.5rem; align-items:start;
+}
+.proj-featured:hover {
+  box-shadow:0 0 40px rgba(232,0,45,.12);
+}
+.proj-featured::before {
+  content:'FEATURED';
+  position:absolute; top:1.25rem; right:1.25rem;
+  font-family:'Share Tech Mono',monospace; font-size:.6rem;
+  letter-spacing:.15em; color:#E8002D;
+  border:1px solid rgba(232,0,45,.3); padding:.2rem .6rem;
+}
+/* AMG red gradient sweep on hover */
+.proj-featured::after {
+  content:'';
+  position:absolute; bottom:0; left:0; right:0; height:2px;
+  background:linear-gradient(to right,#E8002D,#c9a84c,transparent);
+  transform:scaleX(0); transform-origin:left; transition:transform .5s;
+}
+.proj-featured:hover::after { transform:scaleX(1); }
+
+.feat-tag {
+  font-family:'Share Tech Mono',monospace; font-size:.62rem;
+  letter-spacing:.12em; color:#E8002D; text-transform:uppercase; margin-bottom:.75rem;
+}
+.feat-title {
+  font-family:'Barlow Condensed',sans-serif; font-size:clamp(1.4rem,3vw,2rem);
+  font-weight:900; text-transform:uppercase; letter-spacing:.03em;
+  color:#f0f0f0; margin-bottom:.75rem; line-height:1.1;
+}
+.feat-desc {
+  font-size:.88rem; color:#c8c8c8; line-height:1.8; margin-bottom:1.25rem;
+}
+.feat-outcomes { list-style:none; display:flex; flex-direction:column; gap:.55rem; margin-bottom:1.25rem; }
+.feat-outcomes li {
+  font-family:'Share Tech Mono',monospace; font-size:.72rem; color:#c8c8c8;
+  display:flex; align-items:flex-start; gap:.65rem; line-height:1.6;
+}
+.feat-outcomes li::before { content:"→"; color:#E8002D; flex-shrink:0; }
+
+/* AMG-style tags */
+.tag-red {
+  font-family:'Share Tech Mono',monospace; font-size:.6rem; padding:.2rem .6rem;
+  border:1px solid rgba(232,0,45,.4); color:#E8002D;
+  letter-spacing:.05em; text-transform:uppercase;
+}
+
+/* ── SIMULATION IMAGE DISPLAY ── */
+.sim-img-wrap {
+  position:relative; overflow:hidden;
+  border:1px solid #1a1a1a; background:#080808;
+}
+.sim-img-wrap img {
+  width:100%; display:block; object-fit:cover;
+  transition:transform .4s ease;
+}
+.sim-img-wrap:hover img { transform:scale(1.03); }
+.sim-label {
+  position:absolute; bottom:0; left:0; right:0;
+  background:rgba(0,0,0,.8); backdrop-filter:blur(4px);
+  font-family:'Share Tech Mono',monospace; font-size:.62rem;
+  letter-spacing:.08em; color:#c8c8c8; text-transform:uppercase;
+  padding:.5rem .75rem;
+}
+
+/* ── STANDARD PROJECT CARD ── */
+.proj-card {
+  background:var(--surf); border:1px solid var(--bdr);
+  position:relative; overflow:hidden;
+  transition:border-color .25s, box-shadow .25s;
+  display:flex; flex-direction:column;
+}
+.proj-card::after {
+  content:''; position:absolute; bottom:0; left:0; right:0; height:3px;
+  background:linear-gradient(to right,var(--blue),var(--cyan),var(--teal),var(--hot));
+  transform:scaleX(0); transform-origin:left; transition:transform .4s;
+}
+.proj-card:hover { border-color:var(--cyan2); box-shadow:0 0 24px rgba(0,229,255,.07); }
+.proj-card:hover::after { transform:scaleX(1); }
+
+/* Card image */
+.card-img-wrap {
+  position:relative; overflow:hidden; height:200px; background:var(--surf2);
+}
+.card-img-wrap img {
+  width:100%; height:100%; object-fit:cover; display:block;
+  transition:transform .4s ease, filter .3s;
+  filter:brightness(.9);
+}
+.card-img-wrap:hover img { transform:scale(1.04); filter:brightness(1.05); }
+.card-img-label {
+  position:absolute; bottom:0; left:0; right:0;
+  background:rgba(1,10,18,.85); backdrop-filter:blur(4px);
+  font-family:var(--mono); font-size:.6rem; letter-spacing:.08em;
+  color:var(--txt3); text-transform:uppercase; padding:.45rem .7rem;
+}
+
+/* Card body */
+.card-body { padding:1.5rem; display:flex; flex-direction:column; flex:1; }
+.card-type { font-family:var(--mono); font-size:.62rem; color:var(--cyan); letter-spacing:.1em; text-transform:uppercase; margin-bottom:.6rem; }
+.card-title { font-family:var(--cond); font-size:1.15rem; font-weight:800; text-transform:uppercase; margin-bottom:.65rem; line-height:1.2; color:var(--txt); }
+.card-desc { font-size:.85rem; color:var(--txt2); line-height:1.75; margin-bottom:.9rem; flex:1; }
+.card-outcome {
+  font-family:var(--mono); font-size:.7rem; color:var(--green);
+  padding:.35rem .7rem; border:1px solid rgba(0,230,118,.2);
+  background:rgba(0,230,118,.04); margin-bottom:.9rem;
+}
+.card-outcome::before { content:'▶ '; }
+
+/* ── CAD GALLERY SECTION ── */
+.cad-section-title {
+  font-family:var(--cond); font-size:1.8rem; font-weight:800;
+  text-transform:uppercase; letter-spacing:.04em; color:var(--txt);
+  margin:4rem 0 1.5rem; display:flex; align-items:center; gap:1rem;
+}
+.cad-section-title::after {
+  content:''; flex:1; height:1px;
+  background:linear-gradient(to right,var(--bdr2),transparent);
+}
+.cad-grid {
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:3px; background:var(--bdr);
+}
+.cad-item {
+  background:var(--surf); overflow:hidden; position:relative;
+  cursor:pointer;
+}
+.cad-item img {
+  width:100%; height:200px; object-fit:cover; display:block;
+  filter:brightness(.88) saturate(.9);
+  transition:filter .3s, transform .4s;
+}
+.cad-item:hover img { filter:brightness(1.05) saturate(1.1); transform:scale(1.04); }
+.cad-caption {
+  padding:.75rem 1rem;
+  background:linear-gradient(to top,var(--surf),transparent);
+}
+.cad-cap-title { font-family:var(--cond); font-size:1rem; font-weight:700; text-transform:uppercase; letter-spacing:.03em; margin-bottom:.15rem; }
+.cad-cap-sub { font-family:var(--mono); font-size:.6rem; letter-spacing:.08em; color:var(--cyan); text-transform:uppercase; }
+
+/* LIGHTBOX */
+.lightbox {
+  display:none; position:fixed; inset:0; z-index:1000;
+  background:rgba(1,5,10,.95); backdrop-filter:blur(12px);
+  align-items:center; justify-content:center; padding:2rem;
+}
+.lightbox.open { display:flex; }
+.lightbox-inner { position:relative; max-width:90vw; max-height:90vh; }
+.lightbox-inner img { max-width:100%; max-height:85vh; object-fit:contain; display:block; }
+.lightbox-close {
+  position:absolute; top:-2.5rem; right:0;
+  font-family:var(--mono); font-size:.8rem; color:var(--cyan);
+  cursor:pointer; letter-spacing:.1em; background:none; border:none;
+}
+.lightbox-caption {
+  font-family:var(--mono); font-size:.7rem; color:var(--txt2);
+  letter-spacing:.08em; text-align:center; margin-top:.75rem;
+  text-transform:uppercase;
+}
+
+/* ── TOPOLOGY SECTION ── */
+.topo-grid {
+  display:grid; grid-template-columns:1fr 1fr; gap:3px;
+  background:var(--bdr); margin-top:1.25rem;
+}
+.topo-card { background:var(--surf); overflow:hidden; }
+.topo-card img { width:100%; display:block; object-fit:cover; }
+.topo-info { padding:1.1rem 1.25rem; }
+.topo-info-title { font-family:var(--cond); font-size:1rem; font-weight:800; text-transform:uppercase; margin-bottom:.3rem; }
+.topo-info-sub { font-family:var(--mono); font-size:.62rem; color:var(--cyan); letter-spacing:.08em; text-transform:uppercase; margin-bottom:.5rem; }
+.topo-info-desc { font-size:.82rem; color:var(--txt2); line-height:1.7; }
+
+/* RESPONSIVE */
+@media(max-width:800px) {
+  .proj-featured { grid-template-columns:1fr; }
+  .topo-grid { grid-template-columns:1fr; }
+  .cad-grid { grid-template-columns:repeat(2,1fr); }
+}
+@media(max-width:480px) {
+  .cad-grid { grid-template-columns:1fr; }
+}
+</style>
 </head>
 <body>
 <nav class="nav" id="nav"></nav>
 <div class="page">
 <section class="section">
+
+  <!-- HEADER -->
   <div class="section-hdr">
     <span class="sec-num">04</span>
-    <h2 class="sec-title">Projects</h2>
+    <h1 class="sec-title">Projects</h1>
     <div class="sec-line"></div>
   </div>
-  <div id="content"><div class="ga" id="content-inner"></div></div>
-  
+  <p style="color:var(--txt2);font-size:.92rem;max-width:680px;line-height:1.85;margin-bottom:2.5rem;">
+    A complete record of simulation, design, and manufacturing engineering work — spanning CFD multiphase modelling, aerodynamic design, topology optimisation, SolidWorks CAD modelling, HVAC engineering, and lean manufacturing analysis.
+  </p>
+
+  <!-- FILTER -->
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterProjects('all',this)">All Projects</button>
+    <button class="filter-btn" onclick="filterProjects('cfd',this)">CFD & Simulation</button>
+    <button class="filter-btn" onclick="filterProjects('cad',this)">CAD & Design</button>
+    <button class="filter-btn" onclick="filterProjects('manufacturing',this)">Manufacturing</button>
+    <button class="filter-btn" onclick="filterProjects('hvac',this)">HVAC & MEP</button>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       FEATURED: CFD SLOSHING — AMG RED THEME
+  ══════════════════════════════════════════ -->
+  <div class="ga" style="margin-bottom:2px;" id="proj-grid">
+
+    <div class="proj-featured" data-cat="cfd">
+      <!-- LEFT: Description -->
+      <div>
+        <div class="feat-tag">// MSc Dissertation · CFD Simulation · ANSYS Fluent</div>
+        <div class="feat-title">Liquid Sloshing Control<br>in Road Tanker Trucks</div>
+        <div class="feat-desc">
+          Multiphase CFD simulation of dangerous liquid sloshing dynamics in partially filled road tankers under emergency braking. Used ANSYS Fluent with the VOF (Volume of Fluid) model and a custom C-language UDF for velocity boundary conditions. Compared three baffle configurations — no baffles, 3 baffles, and 5 baffles — analysing peak pressure forces, free surface behaviour, and structural wall loading.
+        </div>
+        <ul class="feat-outcomes">
+          <li>5-baffle configuration reduced peak dynamic wall pressure by ~52% vs. unobstructed tank</li>
+          <li>VOF free-surface visualisation confirmed coherent wave-breaking by baffles</li>
+          <li>Mesh independence validated across 3 mesh densities (&lt;2% variation)</li>
+          <li>UDF applied sinusoidal 0.8g deceleration profile over 1.5s braking event</li>
+        </ul>
+        <div style="display:flex;flex-wrap:wrap;gap:.4rem;">
+          <span class="tag-red">ANSYS Fluent</span>
+          <span class="tag-red">VOF Model</span>
+          <span class="tag-red">UDF — C Language</span>
+          <span class="tag tac">Multiphase Flow</span>
+          <span class="tag tac">k-ε Turbulence</span>
+          <span class="tag tac">MSc Dissertation</span>
+        </div>
+      </div>
+      <!-- RIGHT: Animated sloshing GIF -->
+      <div>
+        <div class="sim-img-wrap" style="cursor:pointer;" onclick="openLightbox('assets/img/sloshing_effect_animation.gif','CFD Simulation — Liquid Sloshing in Road Tanker (ANSYS Fluent · VOF Multiphase Model)')">
+          <img src="assets/img/sloshing_effect_animation.gif" alt="CFD simulation of liquid sloshing in road tanker truck using ANSYS Fluent VOF model" loading="lazy">
+          <div class="sim-label">CFD — Sloshing Pressure Field (ANSYS Fluent)</div>
+        </div>
+        <div style="margin-top:3px;display:grid;grid-template-columns:1fr 1fr;gap:3px;">
+          <div style="background:#0a0a0a;border:1px solid #1a1a1a;padding:.85rem;">
+            <div style="font-family:'Share Tech Mono',monospace;font-size:.58rem;color:#E8002D;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.3rem;">Peak Pressure Reduction</div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:2.2rem;font-weight:900;color:#f0f0f0;line-height:1;">52<span style="font-size:1.1rem;color:#E8002D;">%</span></div>
+            <div style="font-family:'Share Tech Mono',monospace;font-size:.58rem;color:#c8c8c8;letter-spacing:.06em;">5-Baffle vs Baseline</div>
+          </div>
+          <div style="background:#0a0a0a;border:1px solid #1a1a1a;padding:.85rem;">
+            <div style="font-family:'Share Tech Mono',monospace;font-size:.58rem;color:#E8002D;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.3rem;">Mesh Elements</div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:2.2rem;font-weight:900;color:#f0f0f0;line-height:1;">28<span style="font-size:1rem;color:#888;">k</span></div>
+            <div style="font-family:'Share Tech Mono',monospace;font-size:.58rem;color:#c8c8c8;letter-spacing:.06em;">Validated Mesh</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── WIND TUNNEL ── -->
+    <div class="proj-card" data-cat="cfd">
+      <div class="card-img-wrap" onclick="openLightbox('assets/img/wind_tunnel.png','Low-Subsonic Open-Circuit Wind Tunnel — SolidWorks Design (BSc Thesis · ICMERE 2019)')" style="cursor:pointer;">
+        <img src="assets/img/wind_tunnel.png" alt="Low-subsonic wind tunnel SolidWorks design render" loading="lazy">
+        <div class="card-img-label">SolidWorks — Open-Circuit Wind Tunnel</div>
+      </div>
+      <div class="card-body">
+        <div class="card-type">BSc Thesis · Aerodynamics · Conference Paper</div>
+        <div class="card-title">Design & CFD Simulation of a Low-Subsonic Wind Tunnel</div>
+        <div class="card-desc">Designed a low-subsonic open-circuit wind tunnel from aerodynamic first principles. Covered contraction ratio optimisation, diffuser geometry, honeycomb and screen specifications, and CFD validation of flow uniformity and turbulence intensity at the test section. Full 3D model built in SolidWorks.</div>
+        <div class="card-outcome">Conference paper presented at ICMERE 2019, CUET, Chittagong</div>
+        <div style="display:flex;flex-wrap:wrap;gap:.4rem;">
+          <span class="tag tac">SolidWorks</span>
+          <span class="tag tac">CFD</span>
+          <span class="tag tac">Aerodynamics</span>
+          <span class="tag tac">Wind Tunnel Design</span>
+          <span class="tag tac">ICMERE 2019</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── WIND TURBINE ── -->
+    <div class="proj-card" data-cat="cad">
+      <div class="card-img-wrap" onclick="openLightbox('assets/img/wind_turbine.jpg','Vertical Axis Wind Turbine (VAWT) — SolidWorks 3D Assembly Model')" style="cursor:pointer;">
+        <img src="assets/img/wind_turbine.jpg" alt="Vertical axis wind turbine VAWT SolidWorks model" loading="lazy">
+        <div class="card-img-label">SolidWorks — Vertical Axis Wind Turbine (VAWT)</div>
+      </div>
+      <div class="card-body">
+        <div class="card-type">CAD Design · Renewable Energy</div>
+        <div class="card-title">Vertical Axis Wind Turbine (VAWT) — 3D Assembly Model</div>
+        <div class="card-desc">Full 3D assembly model of a Vertical Axis Wind Turbine designed in SolidWorks. The VAWT design includes blade geometry, central shaft, support struts, and base mounting structure. Blade profile optimised for self-starting at low wind speeds.</div>
+        <div class="card-outcome">Complete parametric assembly with bill of materials and technical drawings</div>
+        <div style="display:flex;flex-wrap:wrap;gap:.4rem;">
+          <span class="tag tac">SolidWorks</span>
+          <span class="tag tac">3D Assembly</span>
+          <span class="tag tac">Renewable Energy</span>
+          <span class="tag tac">Blade Design</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── TOPOLOGY OPTIMISATION ── -->
+    <div class="proj-card" data-cat="cad manufacturing" style="grid-column:span 2;">
+      <div class="card-body" style="padding-bottom:.5rem;">
+        <div class="card-type">FEA · Topology Optimisation · SolidWorks Simulation</div>
+        <div class="card-title">Topology Optimisation — Tray Component (Before & After)</div>
+        <div class="card-desc">
+          SolidWorks FEA (Finite Element Analysis) simulation and topology optimisation study on a tray component. Static displacement analysis performed on the original design, identifying low-stress zones where material could be removed without compromising structural integrity. The optimised design achieves equivalent performance with reduced part mass — critical for lightweight manufacturing applications.
+        </div>
+      </div>
+      <div class="topo-grid">
+        <div class="topo-card" onclick="openLightbox('assets/img/topology_before.gif','BEFORE: Original Tray Design — Static Displacement FEA (SolidWorks Simulation · URES mm)')" style="cursor:pointer;">
+          <img src="assets/img/topology_before.gif" alt="FEA topology analysis before optimisation - original tray design SolidWorks simulation" loading="lazy">
+          <div class="topo-info">
+            <div class="topo-info-title">Original Design</div>
+            <div class="topo-info-sub">Before Topology Optimisation · Static Displacement (URES)</div>
+            <div class="topo-info-desc">Baseline FEA showing uniform displacement distribution. Material in low-stress zones identified as candidates for removal without structural compromise.</div>
+          </div>
+        </div>
+        <div class="topo-card" onclick="openLightbox('assets/img/topology_after.gif','AFTER: Optimised Tray Design — Static Displacement FEA (SolidWorks Simulation · URES mm)')" style="cursor:pointer;">
+          <img src="assets/img/topology_after.gif" alt="FEA topology analysis after optimisation - redesigned tray SolidWorks simulation" loading="lazy">
+          <div class="topo-info">
+            <div class="topo-info-title">Optimised Design</div>
+            <div class="topo-info-sub">After Topology Optimisation · Reduced Mass</div>
+            <div class="topo-info-desc">Redesigned geometry with material removed from low-stress zones. Structural performance maintained with reduced part mass — weight-optimisation approach applicable to aerospace and F1 component manufacturing.</div>
+          </div>
+        </div>
+      </div>
+      <div class="card-body" style="padding-top:.75rem;">
+        <div style="display:flex;flex-wrap:wrap;gap:.4rem;">
+          <span class="tag tac">SolidWorks Simulation</span>
+          <span class="tag tac">FEA</span>
+          <span class="tag tac">Topology Optimisation</span>
+          <span class="tag tac">Static Displacement</span>
+          <span class="tag tac">Lightweight Design</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── LEAN MANUFACTURING ── -->
+    <div class="proj-card" data-cat="manufacturing">
+      <div class="card-body">
+        <div class="card-type">MSc Coursework · Lean Manufacturing · OEE</div>
+        <div class="card-title">Lean Business Case — H.E.L.L. TD Tube Machine</div>
+        <div class="card-desc">Comprehensive lean manufacturing business case for H.E.L.L.'s hydraulic tube production line. Included OEE analysis, VSM current/future state mapping, Pareto and 5-Why root cause analysis, and 12-month phased implementation programme with full ROI financial model.</div>
+        <div class="card-outcome">Identified 30%+ OEE improvement potential with phased lean roadmap</div>
+        <div style="display:flex;flex-wrap:wrap;gap:.4rem;">
+          <span class="tag tac">Lean Manufacturing</span>
+          <span class="tag tac">VSM</span>
+          <span class="tag tac">OEE Analysis</span>
+          <span class="tag tac">5-Why</span>
+          <span class="tag tac">Pareto Analysis</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── TELEPRESENCE ROBOT / CAPP ── -->
+    <div class="proj-card" data-cat="manufacturing cad">
+      <div class="card-body">
+        <div class="card-type">MSc Coursework · Smart Manufacturing · CAPP</div>
+        <div class="card-title">Telepresence Robot — Rapid Manufacturing & CAPP</div>
+        <div class="card-desc">Rapid manufacturing case study for a telepresence robot component. Developed 3D CAD models and Computer-Aided Process Planning (CAPP) for both CNC machining and additive manufacturing routes, with material selection, process capability, and production cost trade-off analysis.</div>
+        <div class="card-outcome">Comparative CNC vs additive manufacturing CAPP plans with cost analysis</div>
+        <div style="display:flex;flex-wrap:wrap;gap:.4rem;">
+          <span class="tag tac">CAD/CAM</span>
+          <span class="tag tac">CAPP</span>
+          <span class="tag tac">Additive Manufacturing</span>
+          <span class="tag tac">CNC Machining</span>
+          <span class="tag tac">Industry 4.0</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── HVAC NATIONAL ART GALLERY ── -->
+    <div class="proj-card" data-cat="hvac">
+      <div class="card-body">
+        <div class="card-type">Industrial · HVAC & MEP Engineering</div>
+        <div class="card-title">National Art Gallery — HVAC & Fire Protection System</div>
+        <div class="card-desc">Full mechanical engineering design for an 850 RT Central Air Conditioning system, Fire Protection, and Clean Agent Fire Suppression system for Bangladesh National Art Gallery, Shilpakala Academy, Dhaka. Complete design drawings, BOQ, and cost estimates delivered.</div>
+        <div class="card-outcome">Full MEP design package for major national landmark — 850 RT capacity</div>
+        <div style="display:flex;flex-wrap:wrap;gap:.4rem;">
+          <span class="tag tac">HVAC Design</span>
+          <span class="tag tac">Fire Protection</span>
+          <span class="tag tac">AutoCAD</span>
+          <span class="tag tac">BOQ & Estimation</span>
+          <span class="tag tac">MEP Design</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── LENS ASSEMBLY R&D ── -->
+    <div class="proj-card" data-cat="manufacturing">
+      <div class="card-body">
+        <div class="card-type">Industrial R&D · Optical Engineering · Taiwan</div>
+        <div class="card-title">Lens Assembly Optimisation — Young Optics Inc.</div>
+        <div class="card-desc">R&D engineering in automatic lens assembly at Young Optics Inc., Hsinchu. Used MTF (Modulation Transfer Function) machine data to identify optical performance gaps. Developed engineering modifications to improve product quality and reduce machine downtime through systematic fault analysis.</div>
+        <div class="card-outcome">Improved lens MTF performance via data-driven design modifications in R&D cycle</div>
+        <div style="display:flex;flex-wrap:wrap;gap:.4rem;">
+          <span class="tag tac">Optical Engineering</span>
+          <span class="tag tac">MTF Analysis</span>
+          <span class="tag tac">R&D</span>
+          <span class="tag tac">Quality Engineering</span>
+          <span class="tag tac">Process Improvement</span>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end proj-grid -->
+
+  <!-- ══════════════════════════════════════════
+       CAD GALLERY — SolidWorks Models
+  ══════════════════════════════════════════ -->
+  <div class="cad-section-title">
+    <span class="sec-num" style="font-size:.6rem;">CAD</span>
+    SolidWorks Model Gallery
+  </div>
+  <p style="color:var(--txt2);font-size:.88rem;line-height:1.8;margin-bottom:1.5rem;max-width:680px;">
+    A selection of 3D CAD models and assemblies created in SolidWorks — demonstrating competency in complex geometry, assembly constraints, sectioning, and photorealistic rendering.
+  </p>
+
+  <div class="cad-grid">
+
+    <div class="cad-item" onclick="openLightbox('assets/img/model_drawing-engine.jpg','4-Cylinder Engine — Cross-Section Assembly · SolidWorks · Crankshaft, Pistons, Connecting Rods')">
+      <img src="assets/img/model_drawing-engine.jpg" alt="4-cylinder engine cross section SolidWorks model with crankshaft and pistons" loading="lazy">
+      <div class="cad-caption">
+        <div class="cad-cap-title">4-Cylinder Engine</div>
+        <div class="cad-cap-sub" style="color:var(--cyan);">Cross-Section Assembly · SolidWorks</div>
+      </div>
+    </div>
+
+    <div class="cad-item" onclick="openLightbox('assets/img/model_drawing-diff_gear.png','Differential Gear Assembly — Exploded View · SolidWorks · Bevel Gears, Splined Shafts, Housing')">
+      <img src="assets/img/model_drawing-diff_gear.png" alt="Differential gear assembly exploded view SolidWorks with bevel gears and splined shaft" loading="lazy">
+      <div class="cad-caption">
+        <div class="cad-cap-title">Differential Gear Assembly</div>
+        <div class="cad-cap-sub" style="color:var(--cyan);">Exploded View · Bevel Gears · SolidWorks</div>
+      </div>
+    </div>
+
+    <div class="cad-item" onclick="openLightbox('assets/img/model_drawing-jet_engines.jpg','Jet Engine — Cross-Section Render · SolidWorks · Compressor, Combustion Chamber, Turbine Stages')">
+      <img src="assets/img/model_drawing-jet_engines.jpg" alt="Jet engine cross section render SolidWorks with compressor turbine stages" loading="lazy">
+      <div class="cad-caption">
+        <div class="cad-cap-title">Jet Engine — Cross-Section</div>
+        <div class="cad-cap-sub" style="color:var(--cyan);">Turbofan Render · SolidWorks</div>
+      </div>
+    </div>
+
+    <div class="cad-item" onclick="openLightbox('assets/img/model_drawing-robotic_arm.jpg','6-DOF Robotic Arm — 3D Assembly · SolidWorks · Servo Motors, Joints, End-Effector')">
+      <img src="assets/img/model_drawing-robotic_arm.jpg" alt="6 DOF robotic arm 3D assembly SolidWorks servo motors joints" loading="lazy">
+      <div class="cad-caption">
+        <div class="cad-cap-title">6-DOF Robotic Arm</div>
+        <div class="cad-cap-sub" style="color:var(--cyan);">Assembly Model · SolidWorks</div>
+      </div>
+    </div>
+
+    <div class="cad-item" onclick="openLightbox('assets/img/model_drawing-tesla_Valve.jpg','Tesla Valve — Fluidic Diode · SolidWorks · Passive No-Moving-Parts Flow Control Device')">
+      <img src="assets/img/model_drawing-tesla_Valve.jpg" alt="Tesla valve fluidic diode SolidWorks passive flow control" loading="lazy">
+      <div class="cad-caption">
+        <div class="cad-cap-title">Tesla Valve</div>
+        <div class="cad-cap-sub" style="color:var(--cyan);">Fluidic Diode · SolidWorks</div>
+      </div>
+    </div>
+
+  </div><!-- end cad-grid -->
+
 </section>
 </div>
 <footer id="footer"></footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" onclick="closeLightbox()">✕ CLOSE</button>
+    <img id="lb-img" src="" alt="">
+    <div class="lightbox-caption" id="lb-cap"></div>
+  </div>
+</div>
+
 <script src="assets/js/data.js"></script>
 <script src="assets/js/render.js"></script>
-<script>renderNav('projects');renderFooter();document.getElementById('content').innerHTML='<div class="ga">'+renderProjects()+'</div>';</script>
+<script>
+renderNav('projects');
+renderFooter();
+
+// ── LIGHTBOX ──────────────────────────────────────
+function openLightbox(src, caption) {
+  document.getElementById('lb-img').src = src;
+  document.getElementById('lb-cap').textContent = caption;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox(e) {
+  if (!e || e.target === document.getElementById('lightbox') || e.target.closest('.lightbox-close')) {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+    document.getElementById('lb-img').src = '';
+  }
+}
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeLightbox({target:document.getElementById('lightbox')}); });
+
+// ── FILTER ────────────────────────────────────────
+function filterProjects(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('[data-cat]').forEach(card => {
+    if (cat === 'all' || (card.dataset.cat||'').split(' ').includes(cat)) {
+      card.style.display = '';
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(12px)';
+      setTimeout(() => { card.style.transition = 'opacity .3s,transform .3s'; card.style.opacity='1'; card.style.transform='translateY(0)'; }, 50);
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+// ── SCROLL REVEAL ─────────────────────────────────
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.05 });
+
+document.querySelectorAll('.proj-card, .proj-featured, .cad-item').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(24px)';
+  el.style.transition = 'opacity .6s ease, transform .6s ease';
+  obs.observe(el);
+});
+</script>
 </body>
 </html>
