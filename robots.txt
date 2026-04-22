@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://redwanislam.com/sitemap.xml
