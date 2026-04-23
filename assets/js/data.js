@@ -20,7 +20,7 @@ const DEFAULT_DATA = {
     {key:"LinkedIn",    val:"linkedin.com/in/redwanislam98", link:"https://linkedin.com/in/redwanislam98"},
     {key:"Website",     val:"redwanislam.com", link:"https://redwanislam.com"},
     {key:"Languages",   val:"Bengali (Native) · English (B2)"},
-    {key:"Membership",  val:"IMechE Student Affiliate (2020–present)"},
+   // {key:"Membership",  val:"IMechE Student Affiliate (2020–present)"},
     {key:"Interests",   val:"Guitar · Drums · Chess · Table Tennis · Football"}
   ],
   stats:[
@@ -52,7 +52,7 @@ const DEFAULT_DATA = {
      tags:["AutoCAD","2D Drafting","Manufacturing"]}
   ],
   education:[
-    {period:"2023 – 2025",degree:"MSc Mechanical & Manufacturing Engineering",institution:"University of Greenwich, London, UK",
+    {period:"2025 – 2026",degree:"MSc Mechanical & Manufacturing Engineering",institution:"University of Greenwich, London, UK",
      detail:"Dissertation: 'CFD Simulation of Liquid Sloshing in Road Tanker Trucks — Effect of Baffle Configurations Under Emergency Braking' using ANSYS Fluent. Coursework: CFD, lean manufacturing, thermodynamics, smart manufacturing, Industry 4.0, digital twins."},
     {period:"Apr 2016 – Oct 2020",degree:"BSc in Mechanical Engineering",institution:"Bangladesh Army University of Science & Technology (BAUST), Saidpur",
      detail:"CGPA: 2.94 · 162 Credits. Thesis: 'Design and Simulation of a Low-Subsonic Wind Tunnel'. Academic Excellence Scholarship. Executive member: ME Society, CAD Society, Mechatronics & Robotics Club."},
