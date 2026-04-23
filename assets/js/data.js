@@ -6,9 +6,9 @@ const DEFAULT_DATA = {
   email:"redwanislam98@gmail.com",
   linkedin:"https://linkedin.com/in/redwanislam98",
   website:"https://redwanislam.com",
-  whatsapp:"+8801746332251",
+  whatsapp:"+447925949252",
   cv_file:"assets/Redwan_Islam_CV.pdf",
-  photo:"",
+  photo:"assets/img/photo.jpg",
   bio:[
     "Results-driven mechanical engineer with expertise spanning CFD simulation, HVAC system design, optical engineering R&D, and lean manufacturing. Passionate about applying advanced computational methods to solve complex fluid and thermal engineering problems.",
     "My MSc research at the University of Greenwich focused on liquid sloshing dynamics in road tanker trucks — a critical transport safety problem — simulated using ANSYS Fluent with VOF multiphase modelling.",
@@ -19,14 +19,13 @@ const DEFAULT_DATA = {
     {key:"Email",       val:"redwanislam98@gmail.com", link:"mailto:redwanislam98@gmail.com"},
     {key:"LinkedIn",    val:"linkedin.com/in/redwanislam98", link:"https://linkedin.com/in/redwanislam98"},
     {key:"Website",     val:"redwanislam.com", link:"https://redwanislam.com"},
-    {key:"Nationality", val:"Bangladeshi"},
     {key:"Languages",   val:"Bengali (Native) · English (B2)"},
     {key:"Membership",  val:"IMechE Student Affiliate (2020–present)"},
     {key:"Interests",   val:"Guitar · Drums · Chess · Table Tennis · Football"}
   ],
   stats:[
-    {num:"5+",label:"Years Experience"},
-    {num:"2",  label:"Publications"},
+    {num:"4+",label:"Years Experience"},
+    {num:"5",  label:"Publications"},
     {num:"6+", label:"Projects"},
     {num:"3",  label:"Countries"}
   ],
