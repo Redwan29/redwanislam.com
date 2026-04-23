@@ -1,47 +1,344 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Publications | Md Redwan Islam | ICMERE Conference Paper</title>
-<meta name="description" content="Publications and conference presentations by Md Redwan Islam. Presented at ICMERE 2019 International Conference on Mechanical Engineering and Renewable Energy, Chittagong Bangladesh.">
-<meta name="keywords" content="Md Redwan Islam, Redwan Islam mechanical engineer, CFD engineer UK, ANSYS Fluent simulation, HVAC engineer, lean manufacturing engineer, SolidWorks engineer, graduate mechanical engineer, fluid mechanics researcher, VOF CFD simulation">
-<meta name="author" content="Md Redwan Islam">
-<meta name="robots" content="index, follow">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Publications | Md Redwan Islam — Mechanical Engineering Research</title>
+<meta name="description" content="Research publications by Md Redwan Islam: gravitational vortex chamber CFD, wind tunnel design, solar power generation, solar air heater — journal papers, conference proceedings and thesis.">
+<meta name="keywords" content="Md Redwan Islam publications, gravitational vortex chamber, wind tunnel simulation, solar power Bangladesh, ICMERE 2019, Technium journal, Springer LNEE, mechanical engineering research">
+<meta name="robots" content="index,follow">
 <link rel="canonical" href="https://redwanislam.com/publications.html">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://redwanislam.com/publications.html">
-<meta property="og:title" content="Publications | Md Redwan Islam | ICMERE Conference Paper">
-<meta property="og:description" content="Publications and conference presentations by Md Redwan Islam. Presented at ICMERE 2019 International Conference on Mechanical Engineering and Renewable Energy, Chittagong Bangladesh.">
-<meta property="og:image" content="https://redwanislam.com/assets/img/photo.jpg">
-<meta property="og:site_name" content="Redwan Islam — Mechanical Engineer">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Publications | Md Redwan Islam | ICMERE Conference Paper">
-<meta name="twitter:description" content="Publications and conference presentations by Md Redwan Islam. Presented at ICMERE 2019 International Conference on Mechanical Engineering and Renewable Energy, Chittagong Bangladesh.">
-<meta name="twitter:image" content="https://redwanislam.com/assets/img/photo.jpg">
+<meta property="og:title" content="Publications | Md Redwan Islam">
+<meta property="og:description" content="6 research publications: journal papers in Technium & Springer LNEE, ICMERE 2019 conference papers, and BSc thesis on wind tunnel design.">
 <link rel="stylesheet" href="assets/css/style.css">
+<style>
+/* ── PUBLICATION CARD ── */
+.pub-card {
+  background:var(--surf);
+  border:1px solid var(--bdr);
+  padding:2rem;
+  position:relative;
+  overflow:hidden;
+  transition:border-color .25s, box-shadow .25s;
+  display:grid;
+  grid-template-columns:72px 1fr;
+  gap:1.5rem;
+  align-items:start;
+}
+.pub-card::after {
+  content:'';
+  position:absolute; bottom:0; left:0; right:0; height:2px;
+  background:linear-gradient(to right,var(--blue),var(--cyan),var(--teal),var(--hot));
+  transform:scaleX(0); transform-origin:left;
+  transition:transform .4s;
+}
+.pub-card:hover { border-color:var(--cyan2); box-shadow:0 0 24px rgba(0,229,255,.06); }
+.pub-card:hover::after { transform:scaleX(1); }
+
+/* Corner bracket */
+.pub-card::before {
+  content:'';
+  position:absolute; top:8px; right:8px;
+  width:12px; height:12px;
+  border-top:1px solid var(--bdr2);
+  border-right:1px solid var(--bdr2);
+}
+
+.pub-num {
+  font-family:var(--cond);
+  font-size:3rem; font-weight:900;
+  color:var(--bdr2); line-height:1;
+  user-select:none;
+}
+
+.pub-type-badge {
+  display:inline-flex; align-items:center; gap:.35rem;
+  font-family:var(--mono); font-size:.62rem;
+  letter-spacing:.1em; text-transform:uppercase;
+  padding:.2rem .65rem;
+  margin-bottom:.65rem;
+}
+.badge-journal  { background:rgba(0,229,255,.08); border:1px solid var(--cyan3); color:var(--cyan2); }
+.badge-conf     { background:rgba(255,145,0,.07); border:1px solid rgba(255,145,0,.3); color:var(--orange); }
+.badge-thesis   { background:rgba(0,230,118,.07); border:1px solid rgba(0,230,118,.3); color:var(--green); }
+.badge-springer { background:rgba(232,0,45,.07);  border:1px solid rgba(232,0,45,.3);  color:#ff6b6b; }
+
+.pub-title-main {
+  font-family:var(--cond);
+  font-size:1.15rem; font-weight:800;
+  text-transform:uppercase; line-height:1.2;
+  color:var(--txt); margin-bottom:.6rem;
+}
+.pub-venue-line {
+  font-size:.84rem; color:var(--cyan2); font-weight:600;
+  margin-bottom:.45rem; line-height:1.5;
+}
+.pub-authors {
+  font-size:.8rem; color:var(--txt3);
+  font-style:italic; margin-bottom:.75rem;
+  line-height:1.6;
+}
+.pub-authors strong { color:var(--txt2); font-style:normal; }
+
+.pub-meta-row {
+  display:flex; flex-wrap:wrap; gap:.5rem;
+  align-items:center; margin-bottom:.85rem;
+}
+.pub-meta-item {
+  font-family:var(--mono); font-size:.62rem;
+  color:var(--txt3); letter-spacing:.06em;
+  display:flex; align-items:center; gap:.35rem;
+}
+.pub-meta-item::before { content:'◆'; font-size:.4rem; color:var(--bdr2); }
+
+.pub-link {
+  display:inline-flex; align-items:center; gap:.45rem;
+  font-family:var(--mono); font-size:.68rem;
+  letter-spacing:.08em; text-transform:uppercase;
+  color:var(--cyan2); text-decoration:none;
+  border:1px solid var(--bdr2);
+  padding:.35rem .8rem;
+  transition:all .2s;
+}
+.pub-link:hover { border-color:var(--cyan); color:var(--cyan); background:rgba(0,229,255,.04); }
+.pub-link::after { content:'↗'; }
+
+/* STATS ROW */
+.pub-stats {
+  display:flex; gap:2.5rem; flex-wrap:wrap;
+  padding:1.5rem 2rem;
+  background:var(--surf2);
+  border:1px solid var(--bdr2);
+  margin-bottom:3rem;
+  align-items:center;
+}
+.pub-stat-num { font-family:var(--cond); font-size:2.2rem; font-weight:900; color:var(--cyan); line-height:1; }
+.pub-stat-lbl { font-family:var(--mono); font-size:.6rem; color:var(--txt3); letter-spacing:.1em; text-transform:uppercase; margin-top:.15rem; }
+
+@media(max-width:600px) {
+  .pub-card { grid-template-columns:1fr; gap:1rem; }
+  .pub-num  { font-size:2rem; }
+}
+</style>
 </head>
 <body>
 <nav class="nav" id="nav"></nav>
 <div class="page">
 <section class="section">
+
+  <!-- HEADER -->
   <div class="section-hdr">
     <span class="sec-num">05</span>
-    <h2 class="sec-title">Publications & Conferences</h2>
+    <h1 class="sec-title">Publications</h1>
     <div class="sec-line"></div>
   </div>
-  <div class="fc" id="pub-content"></div>
-  <p style="margin-top:2rem;font-family:var(--mono);font-size:.7rem;color:var(--txt3);">
-    // Additional journal publications from MSc research in progress — updated upon publication.
+  <p style="color:var(--txt2);font-size:.92rem;max-width:680px;line-height:1.85;margin-bottom:2.5rem;">
+    Research output spanning computational fluid dynamics, renewable energy systems, and aerodynamic design — published in peer-reviewed journals and international conference proceedings. All papers available on ResearchGate.
   </p>
+
+  <!-- STATS -->
+  <div class="pub-stats">
+    <div><div class="pub-stat-num">6</div><div class="pub-stat-lbl">Total Publications</div></div>
+    <div><div class="pub-stat-num">2</div><div class="pub-stat-lbl">Journal Papers</div></div>
+    <div><div class="pub-stat-num">3</div><div class="pub-stat-lbl">Conference Papers</div></div>
+    <div><div class="pub-stat-num">1</div><div class="pub-stat-lbl">Thesis</div></div>
+    <div style="border-left:1px solid var(--bdr);padding-left:2.5rem;">
+      <div style="font-family:var(--mono);font-size:.62rem;color:var(--cyan);letter-spacing:.1em;margin-bottom:.35rem;">INDEXED IN</div>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
+        <span style="font-family:var(--mono);font-size:.62rem;color:var(--txt2);border:1px solid var(--bdr);padding:.15rem .55rem;">Springer LNEE</span>
+        <span style="font-family:var(--mono);font-size:.62rem;color:var(--txt2);border:1px solid var(--bdr);padding:.15rem .55rem;">Technium</span>
+        <span style="font-family:var(--mono);font-size:.62rem;color:var(--txt2);border:1px solid var(--bdr);padding:.15rem .55rem;">ResearchGate</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PUBLICATIONS LIST -->
+  <div class="fc">
+
+    <!-- 1 — Gravitational Vortex Chamber (Technium Journal) -->
+    <div class="pub-card">
+      <div class="pub-num">01</div>
+      <div>
+        <div class="pub-type-badge badge-journal">Journal Paper</div>
+        <div class="pub-title-main">Numerical Analysis of Gravitational Vortex Chamber</div>
+        <div class="pub-venue-line">
+          Technium: Romanian Journal of Applied Sciences and Technology<br>
+          Vol. 3, No. 10, pp. 11–22, November 2021 · ISSN: 2668-778X
+        </div>
+        <div class="pub-authors">
+          Shahadat Hossain Zehad, Sadman Al Faiyaz, <strong>Md Redwan Islam</strong>, Dr.–Ing. Irfan Ahmed
+        </div>
+        <div class="pub-meta-row">
+          <span class="pub-meta-item">2021</span>
+          <span class="pub-meta-item">CFD · Fluid Mechanics</span>
+          <span class="pub-meta-item">Peer-reviewed Journal</span>
+        </div>
+        <a href="https://www.researchgate.net/publication/356150540_Numerical_Analysis_of_Gravitational_Vortex_Chamber"
+           target="_blank" rel="noopener" class="pub-link">View on ResearchGate</a>
+      </div>
+    </div>
+
+    <!-- 2 — Cylindrical and Conical Basins (Springer LNEE) -->
+    <div class="pub-card">
+      <div class="pub-num">02</div>
+      <div>
+        <div class="pub-type-badge badge-springer">Springer — Book Chapter</div>
+        <div class="pub-title-main">Extracting the Efficient Model of Cylindrical and Conical Basins from Different Aspect Ratios</div>
+        <div class="pub-venue-line">
+          Transactions on Engineering Technologies — World Congress on Engineering 2021<br>
+          Lecture Notes in Electrical Engineering (LNEE), Vol. 919 · Published by Springer · 2022
+        </div>
+        <div class="pub-authors">
+          Shahadat Hossain Zehad, Sadman Al Faiyaz, <strong>Md Redwan Islam</strong>, Dr.–Ing. Irfan Ahmed
+        </div>
+        <div class="pub-meta-row">
+          <span class="pub-meta-item">2022</span>
+          <span class="pub-meta-item">CFD · Vortex Dynamics</span>
+          <span class="pub-meta-item">Springer LNEE Vol. 919</span>
+        </div>
+        <a href="https://link.springer.com/book/9789811962318"
+           target="_blank" rel="noopener" class="pub-link">View on Springer</a>
+      </div>
+    </div>
+
+    <!-- 3 — BSc Thesis -->
+    <div class="pub-card">
+      <div class="pub-num">03</div>
+      <div>
+        <div class="pub-type-badge badge-thesis">BSc Thesis</div>
+        <div class="pub-title-main">Design and Simulation of a Low-Subsonic Wind Tunnel</div>
+        <div class="pub-venue-line">
+          BSc Mechanical Engineering Thesis · Bangladesh Army University of Science and Technology (BAUST)<br>
+          Saidpur, Bangladesh · 2020
+        </div>
+        <div class="pub-authors">
+          <strong>Md. Redwan Islam</strong>, M A Faisal Junaet, Md. Shamim Prodhan, Kanan Rudra<br>
+          Supervisor: Dr.–Ing. Irfan Ahmed (Associate Professor &amp; Head of Dept., ME, BAUST)
+        </div>
+        <div class="pub-meta-row">
+          <span class="pub-meta-item">2020</span>
+          <span class="pub-meta-item">Aerodynamics · CFD · Wind Tunnel Design</span>
+          <span class="pub-meta-item">BAUST</span>
+        </div>
+        <a href="https://www.researchgate.net/profile/Md-Redwan-Islam"
+           target="_blank" rel="noopener" class="pub-link">View Author Profile</a>
+      </div>
+    </div>
+
+    <!-- 4 — Solar-Diesel Hybrid (ICMERE 2019) -->
+    <div class="pub-card">
+      <div class="pub-num">04</div>
+      <div>
+        <div class="pub-type-badge badge-conf">Conference Paper</div>
+        <div class="pub-title-main">An Efficient Solar-Diesel Hybrid Power Generation System for Chakaria Island of Bangladesh</div>
+        <div class="pub-venue-line">
+          Proceedings of the International Conference on Mechanical Engineering and Renewable Energy 2019 (ICMERE 2019)<br>
+          Paper ID: ICMERE2019-PI-004 · 11–13 December 2019, CUET, Chittagong, Bangladesh
+        </div>
+        <div class="pub-authors">
+          Md. Washim Akram, Sk Suzauddin Yusuf, <strong>Md. Redwan Islam</strong>
+        </div>
+        <div class="pub-meta-row">
+          <span class="pub-meta-item">2019</span>
+          <span class="pub-meta-item">Renewable Energy · Solar-Diesel Hybrid</span>
+          <span class="pub-meta-item">ICMERE 2019 · CUET</span>
+        </div>
+        <a href="https://www.researchgate.net/publication/337934991_An_Efficient_Solar-Diesel_Hybrid_Power_Generation_System_for_Chakaria_Island_of_Bangladesh"
+           target="_blank" rel="noopener" class="pub-link">View on ResearchGate</a>
+      </div>
+    </div>
+
+    <!-- 5 — Double Pass Solar Air Heater (ICMERE 2019) -->
+    <div class="pub-card">
+      <div class="pub-num">05</div>
+      <div>
+        <div class="pub-type-badge badge-conf">Conference Paper</div>
+        <div class="pub-title-main">Design and Performance Analysis of a Double Pass Solar Air Heater Using Black Coated Wire Mesh in Bangladesh Perspective</div>
+        <div class="pub-venue-line">
+          Proceedings of the International Conference on Mechanical Engineering and Renewable Energy 2019 (ICMERE 2019)<br>
+          Paper ID: ICMERE2019-PI-002 · 11–13 December 2019, CUET, Chittagong, Bangladesh
+        </div>
+        <div class="pub-authors">
+          M. A. Monem, Md. Washim Akram, M. M. Hossain, <strong>Md. Redwan Islam</strong>
+        </div>
+        <div class="pub-meta-row">
+          <span class="pub-meta-item">2019</span>
+          <span class="pub-meta-item">Solar Thermal · Heat Transfer</span>
+          <span class="pub-meta-item">ICMERE 2019 · CUET</span>
+        </div>
+        <a href="https://www.researchgate.net/publication/337934904_DESIGN_AND_PERFORMANCE_ANALYSIS_OF_A_DOUBLE_PASS_SOLAR_AIR_HEATER_USING_BLACK_COATED_WIRE_MESH_IN_BANGLADESH_PERSPECTIVE"
+           target="_blank" rel="noopener" class="pub-link">View on ResearchGate</a>
+      </div>
+    </div>
+
+    <!-- 6 — Solar Power Chakaria (ICMIME 2019) -->
+    <div class="pub-card">
+      <div class="pub-num">06</div>
+      <div>
+        <div class="pub-type-badge badge-conf">Conference Paper</div>
+        <div class="pub-title-main">An Efficient Solar Power Generation System for Chakaria Island of Bangladesh</div>
+        <div class="pub-venue-line">
+          The 4th International Conference on Mechanical, Industrial and Materials Engineering 2019 (ICMIME 2019)<br>
+          Paper ID: ET-1 · 17–19 December 2019, RUET, Rajshahi, Bangladesh
+        </div>
+        <div class="pub-authors">
+          Sk Suzzauddin Yusuf, Md. Washim Akram, Robiul Islam Rubel, <strong>Md. Redwan Islam</strong>
+        </div>
+        <div class="pub-meta-row">
+          <span class="pub-meta-item">2019</span>
+          <span class="pub-meta-item">Renewable Energy · Solar PV</span>
+          <span class="pub-meta-item">ICMIME 2019 · RUET</span>
+        </div>
+        <a href="https://www.researchgate.net/publication/338102197_An_Efficient_Solar_Power_Generation_for_Chakaria_Island_of_Bangladesh"
+           target="_blank" rel="noopener" class="pub-link">View on ResearchGate</a>
+      </div>
+    </div>
+
+  </div><!-- end pub list -->
+
+  <!-- ResearchGate CTA -->
+  <div style="margin-top:2.5rem;padding:1.5rem 2rem;background:var(--surf2);border:1px solid var(--bdr2);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;">
+    <div>
+      <div style="font-family:var(--mono);font-size:.65rem;color:var(--cyan);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.35rem;">Research Profile</div>
+      <div style="font-size:.9rem;color:var(--txt2);">All papers available on ResearchGate. Additional MSc research publications in progress.</div>
+    </div>
+    <a href="https://www.researchgate.net/profile/Md-Redwan-Islam"
+       target="_blank" rel="noopener"
+       class="btn btn-o" style="flex-shrink:0;">
+      ↗ View ResearchGate Profile
+    </a>
+  </div>
+
+  <p style="margin-top:1.5rem;font-family:var(--mono);font-size:.7rem;color:var(--txt3);letter-spacing:.06em;">
+    // MSc dissertation research (CFD sloshing dynamics — University of Greenwich, 2025) — journal submission in progress.
+  </p>
+
 </section>
 </div>
 <footer id="footer"></footer>
+
 <script src="assets/js/data.js"></script>
 <script src="assets/js/render.js"></script>
 <script>
-  renderNav('publications'); renderFooter();
-  document.getElementById('pub-content').innerHTML = renderPublications();
+renderNav('publications');
+renderFooter();
+
+// Scroll reveal
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.05 });
+
+document.querySelectorAll('.pub-card').forEach((el, i) => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = `opacity .5s ease ${i * 0.08}s, transform .5s ease ${i * 0.08}s`;
+  obs.observe(el);
+});
 </script>
 </body>
 </html>
