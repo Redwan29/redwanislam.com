@@ -7,7 +7,7 @@ const DEFAULT_DATA = {
   linkedin:"https://linkedin.com/in/redwanislam98",
   website:"https://redwanislam.com",
   whatsapp:"+447925949252",
-  cv_file:"assets/Redwan_Islam_CV.pdf",
+  cv_file:"assets/Redwan Islam CV Gen.pdf",
   photo:"assets/img/photo.jpg",
   bio:[
     "Results-driven mechanical engineer with expertise spanning CFD simulation, HVAC system design, optical engineering R&D, and lean manufacturing. Passionate about applying advanced computational methods to solve complex fluid and thermal engineering problems.",
